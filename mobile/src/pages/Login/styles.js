@@ -4,7 +4,6 @@ import Constants from 'expo-constants';
 export default StyleSheet.create({
     container: { 
         flex: 1,
-        paddingTop: Constants.statusBarHeight + 20
     },
     header:{
         height:230,
@@ -30,7 +29,7 @@ export default StyleSheet.create({
     },
     form:{
         paddingHorizontal: 40,
-        paddingVertical: 40,
+        paddingVertical: 60,
     },
 
     formLabel:{
@@ -94,7 +93,7 @@ export default StyleSheet.create({
         fontSize: 14,
     },
     pwdText:{
-        marginTop: 50,
+        marginTop: 70,
         alignSelf: "center"
     }
     
