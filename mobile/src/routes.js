@@ -1,22 +1,24 @@
 import React from 'react';
 
 import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
+import { createDrawerNavigator } from '@react-navigation/drawer';
 
-const AppStack = createStackNavigator();
+import { Button, View } from 'react-native';
+
+const Drawer = createDrawerNavigator();
 
 import Login from './pages/Login';
 import Home from './pages/Home';
 import Cadastro from './pages/Cadastro';
 
+
 export default function Routes(){
-    return(
-        <NavigationContainer>
-            <AppStack.Navigator screenOptions={{headerShown: false}}>
-                <AppStack.Screen name="Login" component={Login}/>
-                <AppStack.Screen name="Home" component={Home}/>
-                <AppStack.Screen name="Cadastro" component={Cadastro}/>
-            </AppStack.Navigator>
-        </NavigationContainer>
-    );
+    <NavigationContainer>
+        <Drawer.Navigator initialRouteName="LoginPage">
+            <Drawer.Screen name="HomePage" component={HomePage} />
+            <Drawer.Screen name="LoginPage" component={LoginPage} />
+        </Drawer.Navigator>
+    </NavigationContainer>
 }
+
+

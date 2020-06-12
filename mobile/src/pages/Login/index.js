@@ -11,7 +11,7 @@ export default function Login(){
         <View style={styles.container}>
             <View >
                 <Image source={logoImg}/>
-                <Text>Encontre empresas agora!</Text>
+                <Text style={styles.texto}>Encontre empresas agora!</Text>
             </View>
         </View>
     );
