@@ -11,7 +11,7 @@ export function DrawerContent(props) {
 		setIsDarkTheme(!isDarkTheme);
 	}
     return (
-        <View style={{flex: 1}}>
+        <View style={{flex: 1, backgroundColor: '#EEEEEE', borderBottomRightRadius: 50, borderTopRightRadius: 50}}>
 			<DrawerContentScrollView {...props}>
 				<View style={styles.drawerContent}>
 					<View style={styles.userInfoSection}>
@@ -109,7 +109,7 @@ export function DrawerContent(props) {
 
 const styles = StyleSheet.create({
 	drawerContent: {
-		flex: 1,
+		flex: 1
 	},
 	userInfoSection: {
 		alignItems: 'center',
@@ -142,7 +142,7 @@ const styles = StyleSheet.create({
 	},
 	bottomDrawerSection: {
 		marginBottom: 15,
-		borderTopColor: '#f4f4f4',
+		borderTopColor: '#44644B',
 		borderTopWidth: 1
 	},
 	preference: {
