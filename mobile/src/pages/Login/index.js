@@ -11,34 +11,47 @@ import styles from './styles';
 export default function Login(){
     return(
         <View style={styles.container}>
+
             <View style={styles.header}>
                 <Image source={logoImg} style={styles.headerLogo}/>
                 <Text style={styles.headerSlogan}>Encontre empresas agora!</Text>
             </View>
+
             <View style={styles.form}>
+
                 <Text style={styles.formLabel}>Email</Text>
+
                 <TextInput
                     underlineColorAndroid="none"
                     style={styles.emailInput}
                     placeholder='email@email.com'
                 />
+
                 <Text style={styles.formLabel}>Senha</Text>
+
                 <TextInput
-                style={styles.passwordInput}
+                    style={styles.passwordInput}
                     placeholder='Senha'
                 />
+
                 <View style={styles.submit}>
+
                     <TouchableOpacity style={styles.buttonSubmit}>
                         <Text style={styles.textSubmit}>Entrar</Text>
                     </TouchableOpacity>
+
                     <View style={styles.links}>
+
                         <TouchableOpacity style={styles.forgotButton}>
                             <Text style={styles.forgotText}>Esqueci minha senha</Text>
                         </TouchableOpacity>
+
                         <TouchableOpacity style={styles.cadastroButton}>
                             <Text style={styles.cadastroText}>Ainda não possui cadastro?</Text>
                         </TouchableOpacity>
+
                         <Text style={styles.pwdText}>Powered by No Bugs</Text>
+
                     </View>
                 </View>
             </View>
