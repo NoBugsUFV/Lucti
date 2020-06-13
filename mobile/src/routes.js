@@ -12,7 +12,10 @@ const Drawer = createDrawerNavigator();
 export default function App() {
 	return (
 		<NavigationContainer>
-			<Drawer.Navigator drawerStyle={{backgroundColor: 'transparent'}} drawerContent={props => <DrawerContent {...props}/>} initialRouteName="Home">
+			<Drawer.Navigator 
+			drawerStyle={{backgroundColor: 'transparent'}} 
+			drawerContent={props => <DrawerContent {...props}/>} 
+			initialRouteName="Home">
 				<Drawer.Screen name="Home" component={Home} />
 				<Drawer.Screen name="Login" component={Login} />
 			</Drawer.Navigator>

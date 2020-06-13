@@ -22,16 +22,21 @@ export default function Login(){
                 <Text style={styles.formLabel}>Email</Text>
 
                 <TextInput
-                    underlineColorAndroid="none"
+                    theme={{colors: {primary: 'transparent'}}}
+                    underlineColor={'transparent'}
                     style={styles.emailInput}
-                    placeholder='email@email.com'
+                    placeholder='Ex: seuemail@email.com'
                 />
 
                 <Text style={styles.formLabel}>Senha</Text>
 
                 <TextInput
+                    theme={{colors: {primary: 'transparent'}}}
+                    secureTextEntry={true}
+                    autoCompleteType={"email"}
+                    underlineColor={'transparent'}
                     style={styles.passwordInput}
-                    placeholder='Senha'
+                    placeholder='Digite sua senha'
                 />
 
                 <View style={styles.submit}>
