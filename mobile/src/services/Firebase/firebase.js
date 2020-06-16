@@ -27,9 +27,9 @@ const devConfig = {
     messagingSenderId: "***************"
 };
 
-const config = process.env.NODE_ENV === 'production'
-    ? prodConfig
-    : devConfig;
+// const config = process.env.NODE_ENV === 'production'
+//     ? prodConfig
+//     : devConfig;
 
 export const firebaseImpl = firebase.initializeApp(config);
 export const firebaseDatabase = firebase.database();
