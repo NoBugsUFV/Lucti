@@ -7,7 +7,8 @@ import logoImg from '../../assets/logo.png';
 
 import styles from './styles';
 
-import firebase, { firebaseAuth } from '../../services/Firebase/firebase';
+import firebaseService from '../../services/Firebase/firebaseService';
+
 
 
 export default function Login(){
@@ -22,8 +23,7 @@ export default function Login(){
                 alert("Por favor informe uma senha com mais de 6");
                 return;
             }
-            firebaseAuth.createUserWithEmailAndPassword(email,senha);
-
+            firebaseService.createAuthUser(email,senha);
        } catch (error) {
            console.log(error.toString());
        }
@@ -38,20 +38,11 @@ export default function Login(){
         // email "gil@gmail.com"
         // senha "gilberto"
 
-
         try {
-            firebaseAuth.signInWithEmailAndPassword(email,senha).then(
-                function(user){
-                    alert("usario de email " + user.user.email + " está logado");
-                }
-            ).catch(
-                function(response){
-                    alert(response);
-                }
-            );
-       } catch (error) {
-           console.log(error.toString())
-       }
+            firebaseService.loginUser(email,senha);
+        } catch (error) {
+            console.log(error.toString())
+        }
      }
 
     return(

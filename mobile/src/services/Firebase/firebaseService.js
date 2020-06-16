@@ -1,4 +1,4 @@
-import {firebaseDatabase} from '../utils/firebase'
+import {firebaseDatabase, firebaseAuth} from '../Firebase/firebase'
 
 export default class FirebaseService {
     static getDataList = (nodePath, callback, size = 10) => {
@@ -16,5 +16,47 @@ export default class FirebaseService {
 
         return query;
     };
+    static createUser = (user) => {
+        var key = firebaseDatabase.ref('/users').push().key;
+        firebaseDatabase.ref('/users').child(key).set(user);
+    };
+    static createAuthUser(email,senha){
+        try {
+            firebaseAuth.createUserWithEmailAndPassword(email,senha);
+            //then().
+            //catch();
+
+        } catch (error) {
+            
+        }
+    }
+    static loginUser(email,senha){
+        try {
+            firebaseAuth.signInWithEmailAndPassword(email,senha).then(
+                function(user){
+                    alert("usario de email " + user.user.email + " está logado");
+                }
+            ).catch(
+                function(response){
+                    alert(response);
+                }
+            );
+       } catch (error) {
+           console.log(error.toString())
+       }
+    }
 
 }
+/*let jsonUser= {
+    dados:{
+         cnpj:"556565656"
+    },
+    endereco:{
+         rua:"ceara",
+         bairro:"luzia augusta"
+    },
+    login:{
+         email:"bebeto@gmail.com",  
+    }
+
+ }*/
