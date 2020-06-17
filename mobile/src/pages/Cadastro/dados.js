@@ -7,7 +7,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
-export default function Cadastro(){
+export default function Dados(){
     const navigator = useNavigation();
     return(
 
@@ -16,13 +16,13 @@ export default function Cadastro(){
                 <TouchableOpacity onPress={()=>{navigator.goBack()}}>
                     <Feather name="arrow-left" size={28} color="#616161"/>
                 </TouchableOpacity>
-                <Text style={styles.title}>Cadastro</Text>
+                <Text style={styles.title}>Seus dados</Text>
             </View>
 
             <View style={styles.form}>
                 
                 <View style={styles.formRow}>
-                    <Text style={styles.label}>Email</Text>
+                    <Text style={styles.label}>Nome da empresa</Text>
                     <TextInput
                         theme={{colors: {primary: 'transparent'}}}
                         underlineColor={'transparent'}
@@ -32,7 +32,7 @@ export default function Cadastro(){
                 </View>
 
                 <View style={styles.formRow}>
-                    <Text style={styles.label}>Senha</Text>
+                    <Text style={styles.label}>CNPJ</Text>
                     <TextInput
                         theme={{colors: {primary: 'transparent'}}}
                         underlineColor={'transparent'}
@@ -42,7 +42,7 @@ export default function Cadastro(){
                 </View>
 
                 <View style={styles.formRow}>
-                    <Text style={styles.label}>Confirme a senha</Text>
+                    <Text style={styles.label}>Site</Text>
                     <TextInput
                         theme={{colors: {primary: 'transparent'}}}
                         underlineColor={'transparent'}
@@ -50,14 +50,31 @@ export default function Cadastro(){
                         placeholder='Digite a senha novamente'
                     />
                 </View>
-                <View style={styles.termsCheck}>
-                    <CheckBox />
-                    <Text>Li e concordo com os <Text onPress={() => Linking.openURL('http://google.com')} style={{color: "#3B5C2F"}}>termos de uso</Text></Text>
-                </View>
 
+                <View style={styles.formRowData}>
+                    <View style={styles.row}>
+                        <Text style={styles.label}>Whatsapp</Text>
+                        <TextInput
+                            theme={{colors: {primary: 'transparent'}}}
+                            underlineColor={'transparent'}
+                            style={styles.labelInputData}
+                            placeholder='(00) 90000-0000'
+                        />
+                    </View>
+                    <View style={styles.row}>
+                        <Text style={styles.label}>Telefone</Text>
+                        <TextInput
+                            theme={{colors: {primary: 'transparent'}}}
+                            underlineColor={'transparent'}
+                            style={styles.labelInputData}
+                            placeholder='(00) 0000-0000'
+                        />
+                    </View>
+                </View>
+                
             </View>
 
-            <TouchableOpacity style={styles.buttonContinue} onPress={()=>{navigator.navigate('Dados')}}>
+            <TouchableOpacity style={styles.buttonContinue}>
                 <Text style={styles.textContinue}>Continuar</Text>
             </TouchableOpacity>
 

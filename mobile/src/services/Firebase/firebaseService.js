@@ -1,4 +1,5 @@
-import {firebaseDatabase, firebaseAuth} from '../Firebase/firebase'
+import {firebaseDatabase, firebaseAuth} from '../Firebase/firebase';
+
 
 export default class FirebaseService {
     static getDataList = (nodePath, callback, size = 10) => {
