@@ -2,100 +2,71 @@ import { StyleSheet } from 'react-native';
 import Constants from 'expo-constants';
 
 export default StyleSheet.create({
-    container: { 
+
+    container:{
         flex: 1,
         color: "#EEEEEE",
+        paddingHorizontal: 30
     },
     header:{
-        height:230,
-        flexDirection: 'column',
-        alignItems: 'center',
-        backgroundColor: "#76AB82",
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 9,
-        },
-        shadowOpacity: 0.48,
-        shadowRadius: 11.95,
-        elevation: 18,
+        marginTop: Constants.statusBarHeight + 20,
     },
-    headerLogo:{
-        marginTop: 90
-    },
-    headerSlogan:{
-        marginTop: 10,
-        fontSize: 14,
-        color: '#364F3C',
+    title:{
+        fontSize: 36,
+        alignSelf: "center",
+        color: "#3B5C2F",
     },
     form:{
-        paddingHorizontal: 40,
-        paddingVertical: 60,
+        paddingVertical: 40,
     },
-
-    formLabel:{
-        fontSize: 16,
-        marginLeft: 17,
-        marginBottom: 1,
-    },  
-
-    emailInput:{
-        borderStyle: "solid",
+    formRow:{
+        paddingVertical: 5
+    },
+    label:{
+        marginBottom: 3,
+        marginLeft: 20
+    },
+    labelInput:{
         borderTopRightRadius:40,
         borderTopLeftRadius:40,
         borderRadius: 40,
         backgroundColor: "#CCCCCC",
-        marginBottom: 20,
-        height: 50,
+        paddingLeft: 10
     },
-    passwordInput:{
-        backgroundColor: "#CCCCCC",
-        borderTopRightRadius:40,
-        borderTopLeftRadius:40,
-        borderRadius: 40,
-        height: 50
+    termsCheck:{
+        flexDirection: "row",
+        alignItems: 'center',
+        alignSelf: 'center',
+        marginTop: 20
     },
-    submit:{
-        alignSelf: "center",
-        marginTop: 25,
-    },
-    buttonSubmit:{
+    buttonContinue:{
         justifyContent: 'center',
         alignItems: 'center',
+        alignSelf: 'center',
         width: 280,
-        height: 50,
+        height: 60,
         borderRadius: 40,
         backgroundColor: "#76AB82",
     },
-    textSubmit:{
-        fontSize: 18,
+
+    textContinue:{
         color: "#EEEEEE"
     },
-    links:{
-        marginTop: 20
+    formRowData:{
+        paddingVertical: 5,
+        flexDirection:'row',
+        alignContent: 'space-between',
     },
-    forgotButton:{
-        marginTop: 20,
-        justifyContent: 'center',
-        alignItems: 'center',
+    labelInputData:{
+        borderTopRightRadius:40,
+        borderTopLeftRadius:40,
+        borderRadius: 40,
+        backgroundColor: "#CCCCCC",
+        paddingHorizontal: 20
     },
-    forgotText:{
-        color: "#3B5C2F",
-        fontSize: 14,
-        fontWeight: "bold"
-    },
-    cadastroButton:{
-        marginTop: 15,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    cadastroText:{
-        color: "#3B5C2F",
-        fontSize: 14,
-    },
-    pwdText:{
-        marginTop: 70,
-        alignSelf: "center"
+    row:{
+        width: '48%',
+        marginRight: 10
+
     }
-    
-})
+});

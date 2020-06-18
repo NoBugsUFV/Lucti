@@ -2,6 +2,8 @@ import React, { useEffect, useState} from 'react';
 import {View, Image, Text} from 'react-native';
 import { TextInput } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+
 
 import logoImg from '../../assets/logo.png';
 
@@ -12,6 +14,9 @@ import firebaseService from '../../services/Firebase/firebaseService';
 
 
 export default function Login(){
+
+    const navigator = useNavigation();
+    
     const [email, setEmail] = useState();
     const [senha, setSenha] = useState();
     
