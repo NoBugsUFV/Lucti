@@ -21,7 +21,7 @@ export default function Login(){
     const [senha, setSenha] = useState();
     
    
- function signUpUser(){
+    function signUpUser(){
         
        try {
             if(senha < 6){
