@@ -1,14 +1,23 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, CheckBox, Linking } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { TextInput } from 'react-native-paper';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { TouchableOpacity, State } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
 export default function Dados(){
+
     const navigator = useNavigation();
+
+    const [empresa, setEmpresa] = useState();
+    const [cnpj, setCNPJ] = useState();
+    const [site, setSite] = useState();
+    const [whatsApp, setWhatsApp] = useState();
+    const [telefone, setTelefone] = useState();
+
+
     return(
 
         <View style={styles.container}>
@@ -27,7 +36,8 @@ export default function Dados(){
                         theme={{colors: {primary: 'transparent'}}}
                         underlineColor={'transparent'}
                         style={styles.labelInput}
-                        placeholder='Ex: seuemail@email.com'
+                        placeholder='Ex: No Bugs'
+                        onChangeText={text => setEmpresa(text)}
                     />
                 </View>
 
@@ -38,6 +48,7 @@ export default function Dados(){
                         underlineColor={'transparent'}
                         style={styles.labelInput}
                         placeholder='Digite uma senha'
+                        onChangeText={text => setCNPJ(text)}
                     />
                 </View>
 
@@ -48,6 +59,7 @@ export default function Dados(){
                         underlineColor={'transparent'}
                         style={styles.labelInput}
                         placeholder='Digite a senha novamente'
+                        onChangeText={text => setSite(text)}
                     />
                 </View>
 
@@ -59,6 +71,7 @@ export default function Dados(){
                             underlineColor={'transparent'}
                             style={styles.labelInputData}
                             placeholder='(00) 90000-0000'
+                            onChangeText={text => setWhatsApp(text)}
                         />
                     </View>
                     <View style={styles.row}>
@@ -68,14 +81,15 @@ export default function Dados(){
                             underlineColor={'transparent'}
                             style={styles.labelInputData}
                             placeholder='(00) 0000-0000'
+                            onChangeText={text => setTelefone(text)}
                         />
                     </View>
                 </View>
                 
             </View>
 
-            <TouchableOpacity style={styles.buttonContinue}>
-                <Text style={styles.textContinue}>Continuar</Text>
+            <TouchableOpacity style={styles.buttonContinue} onPress={() => {navigator.getParam(email,'');}}>
+                <Text style={styles.textContinue}>Cadastro</Text>
             </TouchableOpacity>
 
         </View>
