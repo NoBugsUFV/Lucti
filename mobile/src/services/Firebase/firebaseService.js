@@ -22,10 +22,14 @@ export default class FirebaseService {
     };
     static createAuthUser(email,senha){
         try {
-            firebaseAuth.createUserWithEmailAndPassword(email,senha);
-            //then().
-            //catch();
-
+            firebaseAuth.createUserWithEmailAndPassword(email,senha)
+            .then(
+                doSendEmailVerification = () =>{
+                    firebaseAuth.currentUser.sendEmailVerification({
+                        url: process.env.REACT_APP_CONFIRMATION_EMAIL_REDIRECT,
+                    })
+                }
+            );
         } catch (error) {
             
         }
@@ -45,7 +49,6 @@ export default class FirebaseService {
            console.log(error.toString())
        }
     }
-
 }
 /*let jsonUser= {
     dados:{
