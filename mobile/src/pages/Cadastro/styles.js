@@ -64,9 +64,76 @@ export default StyleSheet.create({
         backgroundColor: "#CCCCCC",
         paddingHorizontal: 20
     },
+
+    //Endereço
     row:{
         width: '48%',
         marginRight: 10
 
+    },
+    rowNum:{
+        width: '30%',
+        marginRight: 10
+    },
+    rowBairro:{
+        width: '65%',
+    },
+    rowCidade:{
+        width: '65%',
+        marginRight: 10
+    },
+    rowUF:{
+        width: '30%',
+    },
+    rowCep:{
+        width: '48%',
+        marginRight: 10
+    },
+    rowComplemento:{
+        width: '48%'
+    },
+    descCategorias:{
+        marginTop: 20,
+        paddingHorizontal: 20,
+        fontSize: 18,
+        textAlign: 'center'
+    },
+
+    // Categorias
+
+    categoryOptions:{
+        paddingTop: 40,
+        paddingBottom: 35,
+        flexDirection:'column',
+        alignContent: 'space-between',
+        alignSelf: 'center'
+    },
+    categoryRow:{
+        paddingVertical: 10,
+        flexDirection:'row',
+        alignContent: 'space-between',
+    },
+    category:{
+        paddingHorizontal: 5
+    },
+    categoryButton:{
+        backgroundColor: '#CCCCCC',
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        borderRadius: 40,
+    },
+    // Final
+
+    titleFinal:{
+        paddingTop: 40,
+        fontSize: 36,
+        alignSelf: "center",
+        color: "#3B5C2F",
+    },
+
+    check:{
+        paddingVertical: 70,
+        alignSelf: 'center'
     }
+
 });

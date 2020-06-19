@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text, CheckBox, Linking } from 'react-native';
+import { View, Text } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { TextInput } from 'react-native-paper';
 import { TouchableOpacity, State } from 'react-native-gesture-handler';
@@ -71,7 +71,7 @@ export default function Dados(){
                             underlineColor={'transparent'}
                             style={styles.labelInputData}
                             placeholder='(00) 90000-0000'
-                            onChangeText={text => setWhatsApp(text)}
+                           onChangeText={text => setWhatsApp(text)}
                         />
                     </View>
                     <View style={styles.row}>
@@ -88,8 +88,8 @@ export default function Dados(){
                 
             </View>
 
-            <TouchableOpacity style={styles.buttonContinue} onPress={() => {navigator.getParam(email,'');}}>
-                <Text style={styles.textContinue}>Cadastro</Text>
+            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ navigator.getParam(email,'');  navigator.navigate('Endereco')}}>
+                <Text style={styles.textContinue}>Continuar</Text>
             </TouchableOpacity>
 
         </View>

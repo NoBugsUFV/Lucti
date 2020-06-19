@@ -8,6 +8,10 @@ import Home from './pages/Home';
 import Login from './pages/Login';
 import Cadastro from './pages/Cadastro';
 import Dados from './pages/Cadastro/dados';
+import Endereco from './pages/Cadastro/endereco';
+import Categorias from './pages/Cadastro/categorias';
+import Final from './pages/Cadastro/final';
+
 
 const Drawer = createDrawerNavigator();
 
@@ -22,6 +26,9 @@ export default function App() {
 				<Drawer.Screen name="Home" component={Home} />
 				<Drawer.Screen name="Cadastro" component={Cadastro} />
 				<Drawer.Screen name="Dados" component={Dados} />
+				<Drawer.Screen name="Endereco" component={Endereco} />
+				<Drawer.Screen name="Categorias" component={Categorias} />
+				<Drawer.Screen name="Final" component={Final} />
 			</Drawer.Navigator>
 		</NavigationContainer>
 	);
