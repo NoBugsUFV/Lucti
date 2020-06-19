@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { View, Text, CheckBox, Linking } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { TextInput } from 'react-native-paper';
@@ -7,8 +7,18 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
+let info = null;
 export default function Cadastro(){
+    
     const navigator = useNavigation();
+
+    const [email, setEmail] = useState();
+    const [senha, setSenha] = useState();
+    const [confimeSenha, setConfirmeSenha] = useState();
+
+
+    console.log(info);
+
     return(
 
         <View style={styles.container}>
@@ -28,6 +38,7 @@ export default function Cadastro(){
                         underlineColor={'transparent'}
                         style={styles.labelInput}
                         placeholder='Ex: seuemail@email.com'
+                        onChangeText={text => setEmail(text)}
                     />
                 </View>
 
@@ -38,6 +49,7 @@ export default function Cadastro(){
                         underlineColor={'transparent'}
                         style={styles.labelInput}
                         placeholder='Digite uma senha'
+                        onChangeText={text => setSenha(text)}
                     />
                 </View>
 
@@ -48,6 +60,7 @@ export default function Cadastro(){
                         underlineColor={'transparent'}
                         style={styles.labelInput}
                         placeholder='Digite a senha novamente'
+                        onChangeText={text => setConfirmeSenha(text)}
                     />
                 </View>
                 <View style={styles.termsCheck}>
@@ -57,7 +70,7 @@ export default function Cadastro(){
 
             </View>
 
-            <TouchableOpacity style={styles.buttonContinue} onPress={()=>{navigator.navigate('Dados')}}>
+            <TouchableOpacity style={styles.buttonContinue} onPress={()=>{navigator.navigate('Dados', {info : email})}}>
                 <Text style={styles.textContinue}>Continuar</Text>
             </TouchableOpacity>
 

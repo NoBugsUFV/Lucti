@@ -34,7 +34,7 @@ export default function Login(){
        }
  
      }
-    function loginUser(){
+    function signInUser(){
 
         //login pra testes
         // email "gilberto@gmail.com"
@@ -84,7 +84,7 @@ export default function Login(){
 
                 <View style={styles.submit}>
 
-                    <TouchableOpacity style={styles.buttonSubmit} onPress={loginUser}>
+                    <TouchableOpacity style={styles.buttonSubmit} onPress={signInUser}>
                         <Text style={styles.textSubmit}>Entrar</Text>
                     </TouchableOpacity>
 
