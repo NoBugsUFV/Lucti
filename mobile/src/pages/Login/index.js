@@ -22,7 +22,7 @@ export default function Login(){
     
    
     
-    function signInUser(){
+    async function signInUser(){
 
         //login pra testes
         // email "gilberto@gmail.com"
@@ -32,7 +32,10 @@ export default function Login(){
         // senha "gilberto"
 
         try {
-            firebaseService.loginUser(email,senha);
+            let user = await firebaseService.loginUser(email,senha);
+            if(user!=null){
+                navigator.navigate("Home");
+            }
         } catch (error) {
             console.log(error.toString())
         }
@@ -79,7 +82,7 @@ export default function Login(){
                     <View style={styles.links}>
 
                         <TouchableOpacity style={styles.forgotButton}
-                        onPress={()=>{firebaseService.doPasswordReset()}}
+                        onPress={()=>{firebaseService.doPasswordReset(email)}}
                         >
                             <Text style={styles.forgotText}>Esqueci minha senha</Text>
                         </TouchableOpacity>

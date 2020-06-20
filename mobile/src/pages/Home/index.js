@@ -2,6 +2,8 @@ import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Card, Button, Avatar, Title, Paragraph, Caption, Searchbar} from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
+import firebaseService from '../../services/Firebase/firebaseService';
+
 
 const Circle = props => <View style={styles.circle}></View>
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
@@ -16,6 +18,8 @@ const categories = [
     {id: 7, title: 'Mecânicas', picture: 'https://picsum.photos/700'},
     {id: 8, title: 'Eletrônicos', picture: 'https://picsum.photos/700'}
 ]
+
+
 
 export const Categories = props => 
 categories.map(categorie => {
@@ -44,7 +48,8 @@ export default class Home extends React.Component{
                 <View style={styles.north}>
                     <Title style={styles.title}>LUCTI</Title>
                     <Caption style={styles.caption}>Encontre empresas agora!</Caption>
-                    <Searchbar placeholder="Busque por empresas ou serviços" onChangeText={this._onChangeSearch} value={searchQuery}/>
+                    <Searchbar placeholder="Busque por empresas ou serviços" 
+                    onChangeText={this._onChangeSearch} value={searchQuery}/>
                 </View>
                 <View style={styles.center}>
                     <View style={{flexDirection: 'row'}}>

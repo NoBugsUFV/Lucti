@@ -18,54 +18,10 @@ export default class FirebaseService {
         return query;
     };
     static createUser(user){
-        console.log(user)
-        jsonUser= {
-            dados:{
-                 cnpj:"556565656"
-            },
-            endereco:{
-                 rua:"ceara",
-                 bairro:"luzia augusta"
-            },
-            login:{
-                 email:"bebeto@gmail.com",  
-            }};
+        console.log(user);
         var key = firebaseDatabase.ref('/users').push().key;
-        firebaseDatabase.ref('/users').child(key).set(jsonUser);
+        firebaseDatabase.ref('/users').child(key).set(user);
     };
-    /*.doCreateUserWithEmailAndPassword(email, passwordOne)
-      .then(authUser => {
-        // Create a user in your Firebase realtime database
-        return this.props.firebase.user(authUser.user.uid).set({
-          username,
-          email,
-          roles,
-        });
-      })
-      .then(() => {
-        return this.props.firebase.doSendEmailVerification();
-      })
-      .then(() => {
-        this.setState({ ...INITIAL_STATE });
-        this.props.history.push(ROUTES.HOME);
-      })
-      .catch(error => {
-        ...
-      });*/
-      /*function signUpUser(){
-        
-        try {
-             if(senha < 6){
-                 alert("Por favor informe uma senha com mais de 6");
-                 return;
-             }
-             firebaseService.createAuthUser(email,senha);
-        } catch (error) {
-            console.log(error.toString());
-        }
-  
-      }*/
-
 
     static createAuthUser(user){
         try {
@@ -96,11 +52,12 @@ export default class FirebaseService {
             alert(error)
         }
     }
-    static loginUser(email,senha){
+    static async loginUser(email,senha){
         try {
             firebaseAuth.signInWithEmailAndPassword(email,senha).then(
-                function(user){
-                    alert("usario de email " + user.user.email + " está logado");
+                function(response){
+                    //alert("usario de email está logado");
+
                 }
             ).catch(
                 function(response){
@@ -110,6 +67,8 @@ export default class FirebaseService {
        } catch (error) {
            console.log(error.toString())
        }
+       return firebaseAuth.currentUser;
+       
     }
 
     static doPasswordReset(email){
@@ -124,19 +83,4 @@ export default class FirebaseService {
         }
         
     } 
-
-
 }
-/*let jsonUser= {
-    dados:{
-         cnpj:"556565656"
-    },
-    endereco:{
-         rua:"ceara",
-         bairro:"luzia augusta"
-    },
-    login:{
-         email:"bebeto@gmail.com",  
-    }
-
- }*/
