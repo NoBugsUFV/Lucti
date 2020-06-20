@@ -82,20 +82,17 @@ export default class FirebaseService {
         });
     }
 
-    static loginUser(email,senha){
-        try {
-            firebaseAuth.signInWithEmailAndPassword(email,senha).then(
-                function(user){
-                    console.log(user.user)
-                }
-            ).catch(
-                function(response){
-                    alert(response);
-                }
-            );
-       } catch (error) {
-           console.log(error.toString())
-       }
+    static loginUser(email, password){
+        firebaseAuth.signInWithEmailAndPassword(email, password)
+        .then(user => {
+            if(user.user.isEmailVerified){
+                console.log(user.user)
+            }
+        }
+        )
+        .catch(response => {
+            alert(response);
+        });
     }
 
     static doPasswordReset(email){

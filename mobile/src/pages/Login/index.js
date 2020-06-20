@@ -15,23 +15,11 @@ export default function Login(){
     const navigator = useNavigation();
     
     const [email, setEmail] = useState();
-    const [password, setSenha] = useState();
-
-    // state = {
-    //     user: '',
-    //     isAuthenticated: false
-    // }
+    const [password, setPassword] = useState();
     
     function signInUser(){
         try {
             firebaseService.loginUser(email, password)
-            // .then(user => {
-            //     // this.setState({user: user, isAuthenticated: true})
-            //     console.log(user.user)
-            // })
-            // .catch(err => {
-            //     console.log(err);
-            // })
         } catch (error) {
             console.log(error.toString())
         }
@@ -66,7 +54,7 @@ export default function Login(){
                     underlineColor={'transparent'}
                     style={styles.passwordInput}
                     placeholder='Digite sua senha'
-                    onChangeText={text => setSenha(text)}
+                    onChangeText={text => setPassword(text)}
                 />
 
                 <View style={styles.submit}>
