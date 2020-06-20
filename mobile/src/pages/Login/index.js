@@ -78,11 +78,14 @@ export default function Login(){
 
                     <View style={styles.links}>
 
-                        <TouchableOpacity style={styles.forgotButton}>
+                        <TouchableOpacity style={styles.forgotButton}
+                        onPress={()=>{firebaseService.doPasswordReset()}}
+                        >
                             <Text style={styles.forgotText}>Esqueci minha senha</Text>
                         </TouchableOpacity>
 
-                        <TouchableOpacity style={styles.cadastroButton}>
+                        <TouchableOpacity style={styles.cadastroButton}
+                        onPress={()=>{ navigator.navigate('Cadastro')}}>
                             <Text style={styles.cadastroText}>Ainda não possui cadastro?</Text>
                         </TouchableOpacity>
 

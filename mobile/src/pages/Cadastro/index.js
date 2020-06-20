@@ -12,9 +12,9 @@ export default function Cadastro(){
     
     const navigator = useNavigation();
 
-    const [email, setEmail] = useState();
-    const [senha, setSenha] = useState();
-    const [confimeSenha, setConfirmeSenha] = useState();
+    const [email, setEmail] = useState('');
+    const [senha, setSenha] = useState('');
+    const [confimeSenha, setConfirmeSenha] = useState('');
 
 
     console.log(info);
@@ -75,8 +75,10 @@ export default function Cadastro(){
             <TouchableOpacity style={styles.buttonContinue} 
             onPress={()=>{
                 let user = {
-                    email:email,
-                    senha:senha
+                    login:{
+                        email:email,
+                        senha:senha
+                    },
                 };
                 navigator.navigate('Dados',{user:user});
                 }}>

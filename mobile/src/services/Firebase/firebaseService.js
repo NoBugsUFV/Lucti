@@ -17,9 +17,21 @@ export default class FirebaseService {
 
         return query;
     };
-    static createUser = (user) => {
+    static createUser(user){
+        console.log(user)
+        jsonUser= {
+            dados:{
+                 cnpj:"556565656"
+            },
+            endereco:{
+                 rua:"ceara",
+                 bairro:"luzia augusta"
+            },
+            login:{
+                 email:"bebeto@gmail.com",  
+            }};
         var key = firebaseDatabase.ref('/users').push().key;
-        firebaseDatabase.ref('/users').child(key).set(user);
+        firebaseDatabase.ref('/users').child(key).set(jsonUser);
     };
     /*.doCreateUserWithEmailAndPassword(email, passwordOne)
       .then(authUser => {
@@ -57,30 +69,31 @@ export default class FirebaseService {
 
     static createAuthUser(user){
         try {
-            firebaseAuth.createUserWithEmailAndPassword(user.email,user.senha)
+            firebaseAuth.createUserWithEmailAndPassword(user.login.email,user.login.senha)
             .then(
-                function(user){ 
+                function(response){ 
                     alert("Você receberá um email em instantes para validar seu cadastro")
                     firebaseAuth.currentUser.sendEmailVerification().then(
-                        function(response){
-                            createUser(user)
+                           ()=>{
+                               console.log(user)
+                               var key = firebaseDatabase.ref('/users').push().key;
+                               firebaseDatabase.ref('/users').child(key).set(user);
                         }
                     )
                     .catch(
                         function (params) {
-                            alert(response)
+                            alert("Algo de errado aconteceu")
                         }
-                    )
-                    .then(
-                        () => alert("acho que deu em")
                     )
                         
                }
             ).catch(
-                
+                function name(params) {
+                    alert(params)
+                }
             );
         } catch (error) {
-            
+            alert(error)
         }
     }
     static loginUser(email,senha){
@@ -100,11 +113,16 @@ export default class FirebaseService {
     }
 
     static doPasswordReset(email){
-        firebaseAuth.sendPasswordResetEmail(email).then(
-            function(){
-                alert("Você receberá um email em instantes para redefinir sua senha")
-            }
-        )
+        if(email!=null){
+            firebaseAuth.sendPasswordResetEmail(email).then(
+                function(){
+                    alert("Você receberá um email em instantes para redefinir sua senha")
+                }
+            )
+        }else{
+            alert("Email inválido")
+        }
+        
     } 
 
 
