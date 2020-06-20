@@ -55,23 +55,16 @@ export default class FirebaseService {
             alert(error)
         }
     }
-    static async loginUser(email,senha){
-        try {
-            firebaseAuth.signInWithEmailAndPassword(email,senha).then(
-                function(response){
-                    //alert("usario de email está logado");
 
-                }
-            ).catch(
-                function(response){
-                    alert(response);
-                }
-            );
+    static async loginUser(email, password){
+        try {
+            await firebaseAuth.signInWithEmailAndPassword(email, password)
        } catch (error) {
            console.log(error.toString())
+           return error
        }
+
        return firebaseAuth.currentUser;
-       
     }
 
     static doPasswordReset(email){
@@ -86,4 +79,14 @@ export default class FirebaseService {
         }
         
     } 
+
+    static getCurrentUser() {
+        return firebaseAuth.currentUser;
+    }
+
+    static signOut(){
+        firebaseAuth.signOut()
+        .then(() => {})
+        .catch(err => console.log(err));
+    }
 }

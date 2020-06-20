@@ -1,8 +1,10 @@
 import React from 'react';
 import {View, StyleSheet} from 'react-native';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import AsyncStorage from '@react-native-community/async-storage';
 import {Avatar, Title, Caption, Drawer, Text, TouchableRipple, Switch, DefaultTheme, DarkTheme, Provider as PaperProvider} from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import firebaseService from '../../services/Firebase/firebaseService';
 
 export function DrawerContent(props) {
 	const [isDarkTheme, setIsDarkTheme] = React.useState(false);
@@ -30,6 +32,31 @@ export function DrawerContent(props) {
 			accent: '#76AB82',
 		},
 	};
+
+	async function signOutUser(){
+        try {
+            firebaseService.signOut();
+            await AsyncStorage.removeItem("@userData");
+			props.navigation.navigate("Login");
+        } catch(error){
+            console.log(error);
+        }
+    }
+
+	const [user, setUser] = React.useState();
+
+	getData = async () => {
+		try {
+			const value = await AsyncStorage.getItem('@userData')
+			if(value !== null) {
+				return JSON.parse(value)
+			}
+		} catch(e) {
+		  console.log(e)
+		}
+	}
+
+	Promise.resolve(getData()).then(res => setUser(res)).catch(err => console.error(err));
 	
     return (
 		<PaperProvider theme={isDarkTheme ? darkTheme : defaultTheme}>
@@ -43,8 +70,8 @@ export function DrawerContent(props) {
 									size={100}
 								/>
 								<View style={{flexDirection: 'column', alignItems: 'center'}}>
-									<Title style={styles.title}>Gubson Silva</Title>
-									<Caption style={styles.caption}>02.560.116/0001-00</Caption>
+									<Title style={styles.title}>{user ? user.email : 'Acesse sua conta agora!'}</Title>
+									<Caption style={styles.caption}>Clique aqui</Caption>
 								</View>
 							</View>
 						</View>
@@ -126,9 +153,9 @@ export function DrawerContent(props) {
 								size={size}
 							/>
 						}
-						label="Conectar"
+						label={user ? "Desconectar" : "Conectar"}
 						labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
-						onPress={() => {props.navigation.navigate('Login')}}
+						onPress={() => {user ? signOutUser() : props.navigation.navigate('Login')}}
 					/>
 				</Drawer.Section>
 			</View>

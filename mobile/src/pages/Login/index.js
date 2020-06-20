@@ -3,6 +3,7 @@ import {View, Image} from 'react-native';
 import { TextInput, Text } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-community/async-storage';
 
 import logoImg from '../../assets/logo.png';
 
@@ -16,25 +17,17 @@ export default function Login(){
     
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
-    
 
     async function signInUser(){
-
-        //login pra testes
-        // email "gilberto@gmail.com"
-        // senha "gilberto"
-        //ou 
-        // email "gil@gmail.com"
-        // senha "gilberto"
-
         try {
-            let user = await firebaseService.loginUser(email,senha);
-            if(user!=null){
+            let user = await firebaseService.loginUser(email, password);
+            await AsyncStorage.setItem("@userData", JSON.stringify(user));
+            if(user.email){
                 navigator.navigate("Home");
             }
-     }catch{
-         
-     }
+        } catch(error){
+            console.log(error);
+        }
     }
 
     return(
