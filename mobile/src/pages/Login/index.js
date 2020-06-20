@@ -1,6 +1,6 @@
 import React, { useEffect, useState} from 'react';
-import {View, Image, Text} from 'react-native';
-import { TextInput } from 'react-native-paper';
+import {View, Image} from 'react-native';
+import { TextInput, Text } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
