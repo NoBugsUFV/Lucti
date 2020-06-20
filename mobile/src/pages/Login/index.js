@@ -4,35 +4,34 @@ import { TextInput, Text } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
-
 import logoImg from '../../assets/logo.png';
 
 import styles from './styles';
 
 import firebaseService from '../../services/Firebase/firebaseService';
 
-
-
 export default function Login(){
 
     const navigator = useNavigation();
     
     const [email, setEmail] = useState();
-    const [senha, setSenha] = useState();
-    
-   
+    const [password, setSenha] = useState();
+
+    // state = {
+    //     user: '',
+    //     isAuthenticated: false
+    // }
     
     function signInUser(){
-
-        //login pra testes
-        // email "gilberto@gmail.com"
-        // senha "gilberto"
-        //ou 
-        // email "gil@gmail.com"
-        // senha "gilberto"
-
         try {
-            firebaseService.loginUser(email,senha);
+            firebaseService.loginUser(email, password)
+            // .then(user => {
+            //     // this.setState({user: user, isAuthenticated: true})
+            //     console.log(user.user)
+            // })
+            // .catch(err => {
+            //     console.log(err);
+            // })
         } catch (error) {
             console.log(error.toString())
         }

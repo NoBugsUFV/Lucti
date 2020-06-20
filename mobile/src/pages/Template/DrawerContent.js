@@ -128,7 +128,7 @@ export function DrawerContent(props) {
 						}
 						label="Conectar"
 						labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
-						onPress={() => {}} 
+						onPress={() => {props.navigation.navigate('Login')}}
 					/>
 				</Drawer.Section>
 			</View>

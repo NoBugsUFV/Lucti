@@ -42,41 +42,42 @@ categories.map(categorie => {
     )
 })
 
-export default function Home() {
+export default class Home extends React.Component {
     state = {
         searchQuery: '',
     };
 
     _onChangeSearch = query => this.setState({ searchQuery: query });
 
-        const { searchQuery } = this.state;
-        return(
-            <View style={styles.container}>
-                <View style={styles.north}>
-                    <Image source={logo} style={styles.logo}/>
-                    <Caption style={styles.caption}>Encontre empresas agora!</Caption>
-                    <Searchbar style={styles.searchbar} placeholder="Busque por empresas ou serviços" onChangeText={this._onChangeSearch} value={searchQuery}/>
-                </View>
-                <View style={styles.center}>
-                    <View style={{flexDirection: 'row'}}>
-                        <Title style={{flex: 5}}>Categorias</Title>
-                        <Caption style={{flex: 1}}>Ver todas</Caption>
+        render(){
+            return(
+                <View style={styles.container}>
+                    <View style={styles.north}>
+                        <Image source={logo} style={styles.logo}/>
+                        <Caption style={styles.caption}>Encontre empresas agora!</Caption>
+                        <Searchbar style={styles.searchbar} placeholder="Busque por empresas ou serviços" onChangeText={this._onChangeSearch} value={this.state.searchQuery}/>
                     </View>
-                    <ScrollView horizontal={true}>
-                        <Categories></Categories>
-                    </ScrollView>
-                </View>
-                <View style={styles.south}>
-                    <View style={{flexDirection: 'row'}}>
-                        <Title style={{flex: 5}}>Populares</Title>
-                        <Caption style={{flex: 1}}>Ver todas</Caption>
+                    <View style={styles.center}>
+                        <View style={{flexDirection: 'row'}}>
+                            <Title style={{flex: 5}}>Categorias</Title>
+                            <Caption style={{flex: 1}}>Ver todas</Caption>
+                        </View>
+                        <ScrollView horizontal={true}>
+                            <Categories></Categories>
+                        </ScrollView>
                     </View>
-                    <ScrollView style={{width: '100%'}}>
-                        <Highlights></Highlights>
-                    </ScrollView>
+                    <View style={styles.south}>
+                        <View style={{flexDirection: 'row'}}>
+                            <Title style={{flex: 5}}>Populares</Title>
+                            <Caption style={{flex: 1}}>Ver todas</Caption>
+                        </View>
+                        <ScrollView style={{width: '100%'}}>
+                            <Highlights></Highlights>
+                        </ScrollView>
+                    </View>
                 </View>
-            </View>
-        );
+            );
+        }
 }
 
 
