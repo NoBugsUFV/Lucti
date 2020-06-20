@@ -4,10 +4,11 @@ import { Feather } from '@expo/vector-icons';
 import { TextInput } from 'react-native-paper';
 import { TouchableOpacity, State } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import firebaseService from '../../services/Firebase/firebaseService';
 
 import styles from './styles';
 
-export default function Dados(){
+export default function Dados(props){
 
     const navigator = useNavigation();
 
@@ -16,6 +17,35 @@ export default function Dados(){
     const [site, setSite] = useState();
     const [whatsApp, setWhatsApp] = useState();
     const [telefone, setTelefone] = useState();
+
+
+    //setEmpresa( navigator.email);
+    //console.log(props.route.params.user);
+
+    function signUpUser(){
+        alert("Oi");
+        const email = props.route.params.user.email;
+        const senha = props.route.params.user.senha;
+        let user = {
+            email:email,
+            senha:senha,
+            empresa:empresa,
+            cnpj:cnpj,
+            site:site,
+            whatsApp:whatsApp,
+            telefone:telefone
+        };
+        try {
+             if(senha < 6){
+                 alert("Por favor informe uma senha com mais de 6");
+                 return;
+             }
+             firebaseService.createAuthUser(user);
+        } catch (error) {
+            console.log(error.toString());
+        }
+  
+      }
 
 
     return(
@@ -88,10 +118,18 @@ export default function Dados(){
                 
             </View>
 
-            <TouchableOpacity style={styles.buttonContinue} onPress={() => {navigator.getParam(email,'');}}>
+            {/* <TouchableOpacity style={styles.buttonContinue} onPress={() => {signUpUser}}>
                 <Text style={styles.textContinue}>Cadastro</Text>
-            </TouchableOpacity>
+            </TouchableOpacity> */}
 
+        
+        
+            <TouchableOpacity style={styles.buttonContinue} 
+            onPress={
+                signUpUser
+                }>
+                <Text style={styles.textContinue}>Continuar</Text>
+            </TouchableOpacity>
         </View>
 
     );

@@ -55,13 +55,26 @@ export default class FirebaseService {
       }*/
 
 
-    static createAuthUser(email,senha){
+    static createAuthUser(user){
         try {
-            firebaseAuth.createUserWithEmailAndPassword(email,senha)
+            firebaseAuth.createUserWithEmailAndPassword(user.email,user.senha)
             .then(
-               function(user){
-                   firebaseAuth.currentUser.sendEmailVerification();
-                   alert("Você receberá um email em instantes para validar seu cadastro")
+                function(user){ 
+                    alert("Você receberá um email em instantes para validar seu cadastro")
+                    firebaseAuth.currentUser.sendEmailVerification().then(
+                        function(response){
+                            createUser(user)
+                        }
+                    )
+                    .catch(
+                        function (params) {
+                            alert(response)
+                        }
+                    )
+                    .then(
+                        () => alert("acho que deu em")
+                    )
+                        
                }
             ).catch(
                 

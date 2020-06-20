@@ -21,19 +21,7 @@ export default function Login(){
     const [senha, setSenha] = useState();
     
    
-    function signUpUser(){
-        
-       try {
-            if(senha < 6){
-                alert("Por favor informe uma senha com mais de 6");
-                return;
-            }
-            firebaseService.createAuthUser(email,senha);
-       } catch (error) {
-           console.log(error.toString());
-       }
- 
-     }
+    
     function signInUser(){
 
         //login pra testes

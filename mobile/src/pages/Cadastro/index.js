@@ -69,8 +69,17 @@ export default function Cadastro(){
                 </View>
 
             </View>
-
-            <TouchableOpacity style={styles.buttonContinue} onPress={()=>{navigator.navigate('Dados', {info : email})}}>
+                
+                {/* .navigation.navigate('tela2', {resultado: this.state.resutadoSoma}) */}
+            
+            <TouchableOpacity style={styles.buttonContinue} 
+            onPress={()=>{
+                let user = {
+                    email:email,
+                    senha:senha
+                };
+                navigator.navigate('Dados',{user:user});
+                }}>
                 <Text style={styles.textContinue}>Continuar</Text>
             </TouchableOpacity>
 
