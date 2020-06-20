@@ -120,7 +120,7 @@ export default function Endereco(props){
 
              onPress={() =>{ 
                 let user =  props.route.params.user;
-                const end = {
+                user.endereco = {
                     endereco:endereco,
                     numero:numero,
                     bairro:bairro,
@@ -129,8 +129,7 @@ export default function Endereco(props){
                     cep:cep,
                     complemento:complemento
                 };
-                user.endereco = end;
-                 navigator.navigate('Categorias', {user:user})}}>
+                navigator.navigate('Categorias', {user:user})}}>
                 <Text style={styles.textContinue}>Continuar</Text>
             </TouchableOpacity>
 

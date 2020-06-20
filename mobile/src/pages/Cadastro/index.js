@@ -7,20 +7,15 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
-let info = null;
 export default function Cadastro(){
     
     const navigator = useNavigation();
 
-    const [email, setEmail] = useState('');
-    const [senha, setSenha] = useState('');
-    const [confimeSenha, setConfirmeSenha] = useState('');
-
-
-    console.log(info);
+    const [email, setEmail] = useState();
+    const [password, setPassword] = useState();
+    const [confirmPassword, setConfirmPassword] = useState();
 
     return(
-
         <View style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity onPress={()=>{navigator.goBack()}}>
@@ -30,7 +25,6 @@ export default function Cadastro(){
             </View>
 
             <View style={styles.form}>
-                
                 <View style={styles.formRow}>
                     <Text style={styles.label}>Email</Text>
                     <TextInput
@@ -49,7 +43,7 @@ export default function Cadastro(){
                         underlineColor={'transparent'}
                         style={styles.labelInput}
                         placeholder='Digite uma senha'
-                        onChangeText={text => setSenha(text)}
+                        onChangeText={text => setPassword(text)}
                     />
                 </View>
 
@@ -60,31 +54,27 @@ export default function Cadastro(){
                         underlineColor={'transparent'}
                         style={styles.labelInput}
                         placeholder='Digite a senha novamente'
-                        onChangeText={text => setConfirmeSenha(text)}
+                        onChangeText={text => setConfirmPassword(text)}
                     />
                 </View>
                 <View style={styles.termsCheck}>
                     <CheckBox />
                     <Text>Li e concordo com os <Text onPress={() => Linking.openURL('http://google.com')} style={{color: "#3B5C2F"}}>termos de uso</Text></Text>
                 </View>
-
             </View>
-                
-                {/* .navigation.navigate('tela2', {resultado: this.state.resutadoSoma}) */}
-            
             <TouchableOpacity style={styles.buttonContinue} 
-            onPress={()=>{
-                let user = {
-                    login:{
-                        email:email,
-                        senha:senha
-                    },
-                };
-                navigator.navigate('Dados',{user:user});
+                onPress={()=> {
+                    let user = {
+                        login: {
+                            email:email,
+                            password:password
+                        }
+                    };
+
+                    navigator.navigate('Dados', {user:user});
                 }}>
                 <Text style={styles.textContinue}>Continuar</Text>
             </TouchableOpacity>
-
         </View>
 
     );

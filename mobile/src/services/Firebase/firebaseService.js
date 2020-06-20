@@ -1,7 +1,7 @@
-import {firebaseDatabase, firebaseAuth} from '../Firebase/firebase';
-
+import {firebaseImpl, firebaseDatabase, firebaseAuth} from '../Firebase/firebase';
 
 export default class FirebaseService {
+
     static getDataList = (nodePath, callback, size = 10) => {
 
         let query = firebaseDatabase.ref(nodePath).limitToLast(size);
@@ -17,6 +17,7 @@ export default class FirebaseService {
 
         return query;
     };
+
     static createUser(user){
         console.log(user)
         jsonUser= {
@@ -66,41 +67,26 @@ export default class FirebaseService {
   
       }*/
 
-
     static createAuthUser(user){
-        try {
-            firebaseAuth.createUserWithEmailAndPassword(user.login.email,user.login.senha)
-            .then(
-                function(response){ 
-                    alert("Você receberá um email em instantes para validar seu cadastro")
-                    firebaseAuth.currentUser.sendEmailVerification().then(
-                           ()=>{
-                               console.log(user)
-                               var key = firebaseDatabase.ref('/users').push().key;
-                               firebaseDatabase.ref('/users').child(key).set(user);
-                        }
-                    )
-                    .catch(
-                        function (params) {
-                            alert("Algo de errado aconteceu")
-                        }
-                    )
-                        
-               }
-            ).catch(
-                function name(params) {
-                    alert(params)
-                }
-            );
-        } catch (error) {
-            alert(error)
-        }
+        firebaseAuth.createUserWithEmailAndPassword(user.login.email, user.login.password)
+        .then(response => { 
+                console.log('auth', response)
+                var key = firebaseDatabase.ref('/users').push().key;
+                firebaseDatabase.ref('/users').child(key).set(user);
+                return firebaseAuth.currentUser.sendEmailVerification()
+            }
+        )
+        .then(() => {})
+        .catch(err => {
+            alert(err)
+        });
     }
+
     static loginUser(email,senha){
         try {
             firebaseAuth.signInWithEmailAndPassword(email,senha).then(
                 function(user){
-                    alert("usario de email " + user.user.email + " está logado");
+                    console.log(user.user)
                 }
             ).catch(
                 function(response){

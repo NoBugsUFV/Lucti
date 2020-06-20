@@ -11,10 +11,13 @@ import firebaseService from '../../services/Firebase/firebaseService';
 
 export default function Categorias(props){
     const navigator = useNavigation();
+
     function cadastrarUsuario() {
-        let user =  props.route.params.user;
-        firebaseService.createAuthUser(user)
+        let user = props.route.params.user;
+        firebaseService.createAuthUser(user);
+        navigator.navigate('Final');
     }
+
     return(
         <View style={styles.container}>
             <View style={styles.header}>
@@ -184,10 +187,7 @@ export default function Categorias(props){
 
             </View>
 
-            <TouchableOpacity style={styles.buttonContinue} 
-            //onPress={() =>{  navigator.navigate('Final')}}
-            onPress={cadastrarUsuario}
-            >
+            <TouchableOpacity style={styles.buttonContinue} onPress={cadastrarUsuario}>
                 <Text style={styles.textContinue}>Finalizar</Text>
             </TouchableOpacity>
 
