@@ -4,20 +4,25 @@ import { Feather } from '@expo/vector-icons';
 import { TextInput } from 'react-native-paper';
 import { TouchableOpacity, State } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import firebaseService from '../../services/Firebase/firebaseService';
 
 import styles from './styles';
 
-export default function Dados(){
+export default function Dados(props){
 
     const navigator = useNavigation();
 
-    const [empresa, setEmpresa] = useState();
-    const [cnpj, setCNPJ] = useState();
-    const [site, setSite] = useState();
-    const [whatsApp, setWhatsApp] = useState();
-    const [telefone, setTelefone] = useState();
+    const [empresa, setEmpresa] = useState('');
+    const [cnpj, setCNPJ] = useState('');
+    const [site, setSite] = useState('');
+    const [whatsApp, setWhatsApp] = useState('');
+    const [telefone, setTelefone] = useState('');
 
 
+    //setEmpresa( navigator.email);
+    //console.log(props.route.params.user);
+
+    
     return(
 
         <View style={styles.container}>
@@ -88,10 +93,21 @@ export default function Dados(){
                 
             </View>
 
-            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ navigator.getParam(email,'');  navigator.navigate('Endereco')}}>
+            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{
+                let user =  props.route.params.user;
+                const dados = {
+                    empresa:empresa,
+                    cnpj:cnpj,
+                    site:site,
+                    whatsApp:whatsApp,
+                    telefone:telefone
+                };
+                user.dados = dados;
+                navigator.navigate('Endereco', {user:user})}}>
                 <Text style={styles.textContinue}>Continuar</Text>
             </TouchableOpacity>
 
+              
         </View>
 
     );

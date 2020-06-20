@@ -19,7 +19,7 @@ export default function Final(){
 
             <Feather name='check' size={250} style={styles.check} color="#76AB82"/>
 
-            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ navigator.getParam(email,''); navigator.navigate('Home')}}>
+            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ navigator.navigate('Home')}}>
                 <Text style={styles.textContinue}>Ir para o app</Text>
             </TouchableOpacity>
 

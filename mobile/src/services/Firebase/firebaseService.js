@@ -17,18 +17,83 @@ export default class FirebaseService {
 
         return query;
     };
-    static createUser = (user) => {
+    static createUser(user){
+        console.log(user)
+        jsonUser= {
+            dados:{
+                 cnpj:"556565656"
+            },
+            endereco:{
+                 rua:"ceara",
+                 bairro:"luzia augusta"
+            },
+            login:{
+                 email:"bebeto@gmail.com",  
+            }};
         var key = firebaseDatabase.ref('/users').push().key;
-        firebaseDatabase.ref('/users').child(key).set(user);
+        firebaseDatabase.ref('/users').child(key).set(jsonUser);
     };
-    static createAuthUser(email,senha){
+    /*.doCreateUserWithEmailAndPassword(email, passwordOne)
+      .then(authUser => {
+        // Create a user in your Firebase realtime database
+        return this.props.firebase.user(authUser.user.uid).set({
+          username,
+          email,
+          roles,
+        });
+      })
+      .then(() => {
+        return this.props.firebase.doSendEmailVerification();
+      })
+      .then(() => {
+        this.setState({ ...INITIAL_STATE });
+        this.props.history.push(ROUTES.HOME);
+      })
+      .catch(error => {
+        ...
+      });*/
+      /*function signUpUser(){
+        
         try {
-            firebaseAuth.createUserWithEmailAndPassword(email,senha);
-            //then().
-            //catch();
-
+             if(senha < 6){
+                 alert("Por favor informe uma senha com mais de 6");
+                 return;
+             }
+             firebaseService.createAuthUser(email,senha);
         } catch (error) {
-            
+            console.log(error.toString());
+        }
+  
+      }*/
+
+
+    static createAuthUser(user){
+        try {
+            firebaseAuth.createUserWithEmailAndPassword(user.login.email,user.login.senha)
+            .then(
+                function(response){ 
+                    alert("Você receberá um email em instantes para validar seu cadastro")
+                    firebaseAuth.currentUser.sendEmailVerification().then(
+                           ()=>{
+                               console.log(user)
+                               var key = firebaseDatabase.ref('/users').push().key;
+                               firebaseDatabase.ref('/users').child(key).set(user);
+                        }
+                    )
+                    .catch(
+                        function (params) {
+                            alert("Algo de errado aconteceu")
+                        }
+                    )
+                        
+               }
+            ).catch(
+                function name(params) {
+                    alert(params)
+                }
+            );
+        } catch (error) {
+            alert(error)
         }
     }
     static loginUser(email,senha){
@@ -46,6 +111,20 @@ export default class FirebaseService {
            console.log(error.toString())
        }
     }
+
+    static doPasswordReset(email){
+        if(email!=null){
+            firebaseAuth.sendPasswordResetEmail(email).then(
+                function(){
+                    alert("Você receberá um email em instantes para redefinir sua senha")
+                }
+            )
+        }else{
+            alert("Email inválido")
+        }
+        
+    } 
+
 
 }
 /*let jsonUser= {
