@@ -1,9 +1,8 @@
 import React, { useEffect, useState} from 'react';
-import {View, Image, Text} from 'react-native';
-import { TextInput } from 'react-native-paper';
+import {View, Image} from 'react-native';
+import { TextInput, Text } from 'react-native-paper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-
 
 import logoImg from '../../assets/logo.png';
 
@@ -11,17 +10,14 @@ import styles from './styles';
 
 import firebaseService from '../../services/Firebase/firebaseService';
 
-
-
 export default function Login(){
 
     const navigator = useNavigation();
     
     const [email, setEmail] = useState();
-    const [senha, setSenha] = useState();
+    const [password, setPassword] = useState();
     
-   
-    
+
     async function signInUser(){
 
         //login pra testes
@@ -36,10 +32,10 @@ export default function Login(){
             if(user!=null){
                 navigator.navigate("Home");
             }
-        } catch (error) {
-            console.log(error.toString())
-        }
+     }catch{
+         
      }
+    }
 
     return(
         <View style={styles.container}>
@@ -70,7 +66,7 @@ export default function Login(){
                     underlineColor={'transparent'}
                     style={styles.passwordInput}
                     placeholder='Digite sua senha'
-                    onChangeText={text => setSenha(text)}
+                    onChangeText={text => setPassword(text)}
                 />
 
                 <View style={styles.submit}>

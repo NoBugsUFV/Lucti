@@ -56,7 +56,7 @@ export function DrawerContent(props) {
 										color={!isDarkTheme ? color : 'white'}
 										size={size}
 									/>}
-								label="Home" 
+								label="Anúncios" 
 								labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
 								onPress={() => {props.navigation.navigate('Home')}} 
 							/>
@@ -69,7 +69,7 @@ export function DrawerContent(props) {
 									/>}
 								label="Perfil" 
 								labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
-								onPress={() => {props.navigation.navigate('StudentsList')}} 
+								onPress={() => {props.navigation.navigate('Login')}} 
 							/>
 							<DrawerItem 
 								icon={({color, size}) =>
@@ -80,7 +80,7 @@ export function DrawerContent(props) {
 									/>}
 								label="Meus Serviços" 
 								labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
-								onPress={() => {props.navigation.navigate('StudentsListPaper')}} 
+								onPress={() => {props.navigation.navigate('Login')}} 
 							/>
 							<DrawerItem 
 								icon={({color, size}) =>
@@ -91,7 +91,7 @@ export function DrawerContent(props) {
 									/>}
 								label="Categorias" 
 								labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
-								onPress={() => {props.navigation.navigate('Callback')}} 
+								onPress={() => {props.navigation.navigate('Login')}} 
 							/>
 							<DrawerItem 
 								icon={({color, size}) =>
@@ -102,7 +102,7 @@ export function DrawerContent(props) {
 									/>}
 								label="Planos Lucti" 
 								labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
-								onPress={() => {props.navigation.navigate('DirectCommunication')}} 
+								onPress={() => {props.navigation.navigate('Login')}} 
 							/>
 						</Drawer.Section>
 						<Drawer.Section title="Preferências">
@@ -126,9 +126,9 @@ export function DrawerContent(props) {
 								size={size}
 							/>
 						}
-						label="Desconectar" 
+						label="Conectar"
 						labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
-						onPress={() => {}} 
+						onPress={() => {props.navigation.navigate('Login')}}
 					/>
 				</Drawer.Section>
 			</View>

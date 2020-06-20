@@ -12,19 +12,13 @@ export default function Dados(props){
 
     const navigator = useNavigation();
 
-    const [empresa, setEmpresa] = useState('');
-    const [cnpj, setCNPJ] = useState('');
-    const [site, setSite] = useState('');
-    const [whatsApp, setWhatsApp] = useState('');
-    const [telefone, setTelefone] = useState('');
-
-
-    //setEmpresa( navigator.email);
-    //console.log(props.route.params.user);
-
+    const [empresa, setEmpresa] = useState();
+    const [cnpj, setCNPJ] = useState();
+    const [site, setSite] = useState();
+    const [whatsApp, setWhatsApp] = useState();
+    const [telefone, setTelefone] = useState();
     
     return(
-
         <View style={styles.container}>
             <View style={styles.header}>
                 <TouchableOpacity onPress={()=>{navigator.goBack()}}>
@@ -94,20 +88,17 @@ export default function Dados(props){
             </View>
 
             <TouchableOpacity style={styles.buttonContinue} onPress={() =>{
-                let user =  props.route.params.user;
-                const dados = {
+                let user = props.route.params.user;
+                user.dados = {
                     empresa:empresa,
                     cnpj:cnpj,
                     site:site,
                     whatsApp:whatsApp,
                     telefone:telefone
                 };
-                user.dados = dados;
                 navigator.navigate('Endereco', {user:user})}}>
                 <Text style={styles.textContinue}>Continuar</Text>
             </TouchableOpacity>
-
-              
         </View>
 
     );

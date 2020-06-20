@@ -17,6 +17,9 @@ export default class FirebaseService {
 
         return query;
     };
+    static getEmpresas(){
+        let query = firebaseDatabase.ref('/empresas')
+    }
     static createUser(user){
         console.log(user);
         var key = firebaseDatabase.ref('/users').push().key;

@@ -21,7 +21,7 @@ export default function App() {
 			<Drawer.Navigator 
 			drawerStyle={{backgroundColor: 'transparent'}} 
 			drawerContent={props => <DrawerContent {...props}/>} 
-			initialRouteName="Login">
+			initialRouteName="Home">
 				<Drawer.Screen name="Login" component={Login} />
 				<Drawer.Screen name="Home" component={Home} />
 				<Drawer.Screen name="Cadastro" component={Cadastro} />

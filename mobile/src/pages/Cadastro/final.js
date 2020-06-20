@@ -14,12 +14,12 @@ export default function Final(){
 
             <View style={styles.header}>
                 <Text style={styles.titleFinal}>Pronto!</Text>
-                <Text style={styles.descCategorias}>Seu cadastro foi realizado! </Text>
+                <Text style={styles.descCategorias}>Você receberá um email em instantes para validar seu cadastro </Text>
             </View>
 
             <Feather name='check' size={250} style={styles.check} color="#76AB82"/>
 
-            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ navigator.navigate('Home')}}>
+            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ navigator.navigate('Login')}}>
                 <Text style={styles.textContinue}>Ir para o app</Text>
             </TouchableOpacity>
 
