@@ -27,10 +27,10 @@ export default class FirebaseService {
     };
 
     static createAuthUser(user){
-        try {
-            firebaseAuth.createUserWithEmailAndPassword(user.login.email,user.login.senha)
+        // try {
+            firebaseAuth.createUserWithEmailAndPassword(user.login.email, user.login.password)
             .then(
-                function(response){ 
+                response => { 
                     alert("Você receberá um email em instantes para validar seu cadastro")
                     firebaseAuth.currentUser.sendEmailVerification().then(
                            ()=>{
@@ -38,22 +38,14 @@ export default class FirebaseService {
                                var key = firebaseDatabase.ref('/users').push().key;
                                firebaseDatabase.ref('/users').child(key).set(user);
                         }
-                    )
-                    .catch(
-                        function (params) {
-                            alert("Algo de errado aconteceu")
-                        }
-                    )
-                        
+                    )  
                }
-            ).catch(
-                function name(params) {
-                    alert(params)
-                }
-            );
-        } catch (error) {
-            alert(error)
-        }
+            ).catch(err => {
+                    alert(err)
+            });
+        // } catch (error) {
+            // alert(error)
+        // }
     }
 
     static async loginUser(email, password){
