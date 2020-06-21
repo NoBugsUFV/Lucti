@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
 import AsyncStorage from '@react-native-community/async-storage';
 import {Avatar, Title, Caption, Drawer, Text, TouchableRipple, Switch, DefaultTheme, DarkTheme, Provider as PaperProvider} from 'react-native-paper'
@@ -64,16 +64,13 @@ export function DrawerContent(props) {
 				<DrawerContentScrollView {...props}>
 					<View style={styles.drawerContent}>
 						<View style={styles.userInfoSection}>
-							<View style={{flexDirection:'column', alignItems: 'center', marginTop:15}}>
-								<Avatar.Image 
-									source={{uri: 'https://avatars3.githubusercontent.com/u/62998385?s=200&v=4'}}
-									size={100}
-								/>
+							<TouchableOpacity style={{flexDirection:'column', alignItems: 'center', marginTop:15}} onPress={() => {props.navigation.navigate(user ? 'Profile' : 'Login')}}>
+								<Avatar.Image source={{uri: 'https://avatars3.githubusercontent.com/u/62998385?s=200&v=4'}} size={user ? 100 : 0}/>
 								<View style={{flexDirection: 'column', alignItems: 'center'}}>
 									<Title style={styles.title}>{user ? user.email : 'Acesse sua conta agora!'}</Title>
-									<Caption style={styles.caption}>Clique aqui</Caption>
+									<Caption style={styles.caption}>{user ? user.email : 'Clique aqui'}</Caption>
 								</View>
-							</View>
+							</TouchableOpacity>
 						</View>
 						<Drawer.Section style={styles.drawerSection}>
 							<DrawerItem 
