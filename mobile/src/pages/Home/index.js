@@ -1,9 +1,11 @@
-import React from 'react';
+import React, {Suspense} from 'react';
 import {View, StyleSheet, Image} from 'react-native';
 import {Card, Button, Avatar, Title, Paragraph, Caption, Searchbar} from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import logo from '../../assets/logo.png';
+
+import firebaseService from '../../services/Firebase/firebaseService';
 
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
@@ -30,26 +32,44 @@ categories.map(categorie => {
     )
 })
 
-export const Highlights = props => 
-categories.map(categorie => {
-    return (
-        <Card style={styles.card} key={categorie.id}>
-            <Card.Cover source={{ uri: categorie.picture }} />
-            <Card.Content style={{alignItems: 'center', marginTop: 5}}>
-                <Title style={{lineHeight: 20, fontSize: 18}}>{categorie.title}</Title>
-            </Card.Content>
-        </Card>
-    )
-})
+export const Highlights = props => {
+    const keys = Object.keys(props.companies ? props.companies : {})
+    return keys.map(key => {
+        return (
+            <Card style={styles.card} key={key}>
+                <Card.Cover source={{ uri: 'https://i.imgur.com/sv5ruRC.jpg' }} />
+                <Card.Content style={{alignItems: 'center', marginTop: 5}}>
+                    <Title style={{lineHeight: 20, fontSize: 18}}>{props.companies[key].dados.empresa}</Title>
+                </Card.Content>
+            </Card>
+        )
+    })
+}
 
 export default class Home extends React.Component {
     state = {
         searchQuery: '',
+        companies: null
     };
 
     _onChangeSearch = query => this.setState({ searchQuery: query });
 
+    componentDidMount() {
+        firebaseService.readCompanies().then(ref => {
+            ref.on('value', querySnapShot => {
+                let data = querySnapShot.val() ? querySnapShot.val() : {};
+                let todoItems = {...data};
+                this.setState({
+                  companies: todoItems,
+                });
+            });
+        });
+        
+      }
+
         render(){
+            // let todosKeys = Object.keys(this.state.companies ? this.state.companies : {});
+
             return(
                 <View style={styles.container}>
                     <View style={styles.north}>
@@ -72,7 +92,7 @@ export default class Home extends React.Component {
                             <Caption style={{flex: 1}}>Ver todas</Caption>
                         </View>
                         <ScrollView style={{width: '100%'}}>
-                            <Highlights></Highlights>
+                            <Highlights companies={this.state.companies}></Highlights>
                         </ScrollView>
                     </View>
                 </View>

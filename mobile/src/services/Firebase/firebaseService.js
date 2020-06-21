@@ -1,5 +1,5 @@
 import {firebaseDatabase, firebaseAuth} from '../Firebase/firebase';
-
+import AsyncStorage from '@react-native-community/async-storage';
 
 export default class FirebaseService {
     static getDataList = (nodePath, callback, size = 10) => {
@@ -88,5 +88,9 @@ export default class FirebaseService {
         firebaseAuth.signOut()
         .then(() => {})
         .catch(err => console.log(err));
+    }
+
+    static async readCompanies(){
+        return  firebaseDatabase.ref('/users');
     }
 }
