@@ -1,6 +1,6 @@
-import React, {Suspense} from 'react';
+import React from 'react';
 import {View, StyleSheet, Image} from 'react-native';
-import {Card, Button, Avatar, Title, Paragraph, Caption, Searchbar} from 'react-native-paper';
+import {Card, Avatar, Title, Caption, Searchbar} from 'react-native-paper';
 import { ScrollView } from 'react-native-gesture-handler';
 
 import logo from '../../assets/logo.png';
@@ -64,12 +64,9 @@ export default class Home extends React.Component {
                 });
             });
         });
-        
       }
 
         render(){
-            // let todosKeys = Object.keys(this.state.companies ? this.state.companies : {});
-
             return(
                 <View style={styles.container}>
                     <View style={styles.north}>
