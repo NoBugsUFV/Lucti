@@ -52,6 +52,7 @@ export default class FirebaseService {
         try {
             await firebaseAuth.signInWithEmailAndPassword(email, password)
        } catch (error) {
+           alert(error.toString())
            console.log(error.toString())
            return error
        }
