@@ -55,6 +55,7 @@ export default function Login(){
                     style={styles.emailInput}
                     placeholder='Ex: seuemail@email.com'
                     onChangeText={text => setEmail(text)}
+                    keyboardType= "email-address"
                 />
 
                 <Text style={styles.formLabel}>Senha</Text>

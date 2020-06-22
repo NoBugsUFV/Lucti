@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { View, Text } from 'react-native';
+import { View, Text,  } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { TextInput } from 'react-native-paper';
 import { TouchableOpacity, State } from 'react-native-gesture-handler';
@@ -19,7 +19,7 @@ export default function Dados(props){
     const [telefone, setTelefone] = useState();
     
     return(
-        <View style={styles.container}>
+        <View style={styles.container} >
             <View style={styles.header}>
                 <TouchableOpacity onPress={()=>{navigator.goBack()}}>
                     <Feather name="arrow-left" size={28} color="#616161"/>
@@ -61,7 +61,6 @@ export default function Dados(props){
                         onChangeText={text => setSite(text)}
                     />
                 </View>
-
                 <View style={styles.formRowData}>
                     <View style={styles.row}>
                         <Text style={styles.label}>Whatsapp</Text>
@@ -70,7 +69,7 @@ export default function Dados(props){
                             underlineColor={'transparent'}
                             style={styles.labelInputData}
                             placeholder='(00) 90000-0000'
-                           onChangeText={text => setWhatsApp(text)}
+                            onChangeText={text => setWhatsApp(text)}
                         />
                     </View>
                     <View style={styles.row}>
@@ -100,6 +99,5 @@ export default function Dados(props){
                 <Text style={styles.textContinue}>Continuar</Text>
             </TouchableOpacity>
         </View>
-
     );
 }

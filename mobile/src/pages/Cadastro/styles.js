@@ -56,6 +56,7 @@ export default StyleSheet.create({
         paddingVertical: 5,
         flexDirection:'row',
         alignContent: 'space-between',
+        
     },
     labelInputData:{
         borderTopRightRadius:40,
