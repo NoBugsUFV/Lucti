@@ -18,7 +18,7 @@ export default function Cadastro(){
     return(
         <View style={styles.container}>
             <View style={styles.header}>
-                <TouchableOpacity onPress={()=>{navigator.goBack()}}>
+                <TouchableOpacity onPress={()=>{navigator.navigate('Login')}}>
                     <Feather name="arrow-left" size={28} color="#616161"/>
                 </TouchableOpacity>
                 <Text style={styles.title}>Cadastro</Text>
@@ -33,6 +33,7 @@ export default function Cadastro(){
                         style={styles.labelInput}
                         placeholder='Ex: seuemail@email.com'
                         onChangeText={text => setEmail(text)}
+                        keyboardType= "email-address"
                     />
                 </View>
 
@@ -40,6 +41,7 @@ export default function Cadastro(){
                     <Text style={styles.label}>Senha</Text>
                     <TextInput
                         theme={{colors: {primary: 'transparent'}}}
+                        secureTextEntry={true}
                         underlineColor={'transparent'}
                         style={styles.labelInput}
                         placeholder='Digite uma senha'
@@ -51,6 +53,7 @@ export default function Cadastro(){
                     <Text style={styles.label}>Confirme a senha</Text>
                     <TextInput
                         theme={{colors: {primary: 'transparent'}}}
+                        secureTextEntry={true}
                         underlineColor={'transparent'}
                         style={styles.labelInput}
                         placeholder='Digite a senha novamente'
