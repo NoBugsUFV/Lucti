@@ -177,7 +177,7 @@ export default function Categorias(){
 
             </View>
 
-            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ navigator.getParam(email,''); navigator.navigate('Final')}}>
+            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ /* navigator.getParam(email,''); */ navigator.navigate('Final')}}>
                 <Text style={styles.textContinue}>Finalizar</Text>
             </TouchableOpacity>
 

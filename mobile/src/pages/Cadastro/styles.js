@@ -31,7 +31,7 @@ export default StyleSheet.create({
         borderTopLeftRadius:40,
         borderRadius: 40,
         backgroundColor: "#CCCCCC",
-        paddingLeft: 10
+        paddingLeft: 10,
     },
     termsCheck:{
         flexDirection: "row",
@@ -62,7 +62,8 @@ export default StyleSheet.create({
         borderTopLeftRadius:40,
         borderRadius: 40,
         backgroundColor: "#CCCCCC",
-        paddingHorizontal: 20
+        paddingHorizontal: 20,
+        height: 65
     },
 
     //Endereço

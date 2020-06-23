@@ -108,7 +108,7 @@ export default function Endereco(){
 
             </View>
 
-            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ navigator.getParam(email,''); navigator.navigate('Categorias')}}>
+            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ /* navigator.getParam(email,''); */ navigator.navigate('Categorias')}}>
                 <Text style={styles.textContinue}>Continuar</Text>
             </TouchableOpacity>
 
