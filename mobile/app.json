@@ -23,6 +23,11 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android":{
+      "package":"com.nobugs.lucti",
+      "versionCode": 2
+
     }
   }
 }

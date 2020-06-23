@@ -6,8 +6,18 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
-export default function Categorias(){
+import firebaseService from '../../services/Firebase/firebaseService';
+
+
+export default function Categorias(props){
     const navigator = useNavigation();
+
+    function cadastrarUsuario() {
+        let user = props.route.params.user;
+        firebaseService.createAuthUser(user);
+        navigator.navigate('Final');
+    }
+
     return(
         <View style={styles.container}>
             <View style={styles.header}>
@@ -177,7 +187,7 @@ export default function Categorias(){
 
             </View>
 
-            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ /* navigator.getParam(email,''); */ navigator.navigate('Final')}}>
+            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ navigator.getParam(email,''); navigator.navigate('Final')}}>
                 <Text style={styles.textContinue}>Finalizar</Text>
             </TouchableOpacity>
 

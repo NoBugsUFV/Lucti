@@ -7,9 +7,17 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
-export default function Endereco(){
+export default function Endereco(props){
 
     const navigator = useNavigation();
+
+    const [endereco, setEndereco] = useState('');
+    const [numero, setNumero] = useState('');
+    const [bairro, setBairro] = useState('');
+    const [cidade, setCidade] = useState('');
+    const [uf, setUf] = useState('');
+    const [cep, setCep] = useState('');
+    const [complemento, setComplemento] = useState('');
 
     return(
         <View style={styles.container}>
@@ -28,7 +36,7 @@ export default function Endereco(){
                         underlineColor={'transparent'}
                         style={styles.labelInput}
                         placeholder='Av. Brasil'
-                        onChangeText={text => setEmpresa(text)}
+                        onChangeText={text => setEndereco(text)}
                     />
                 </View>
 
@@ -41,7 +49,7 @@ export default function Endereco(){
                             underlineColor={'transparent'}
                             style={styles.labelInput}
                             placeholder='Número'
-                            onChangeText={text => setEmpresa(text)}
+                            onChangeText={text => setNumero(text)}
                         />
                     </View>
 
@@ -52,7 +60,7 @@ export default function Endereco(){
                             underlineColor={'transparent'}
                             style={styles.labelInput}
                             placeholder='Bairro'
-                            onChangeText={text => setEmpresa(text)}
+                            onChangeText={text => setBairro(text)}
                         />
                     </View>
 
@@ -66,7 +74,7 @@ export default function Endereco(){
                             underlineColor={'transparent'}
                             style={styles.labelInput}
                             placeholder='Cidade'
-                            onChangeText={text => setEmpresa(text)}
+                            onChangeText={text => setCidade(text)}
                         />
                     </View>
 
@@ -77,7 +85,7 @@ export default function Endereco(){
                             underlineColor={'transparent'}
                             style={styles.labelInput}
                             placeholder='UF'
-                            onChangeText={text => setEmpresa(text)}
+                            onChangeText={text => setUf(text)}
                         />
                     </View>
                 </View>
@@ -90,7 +98,7 @@ export default function Endereco(){
                             underlineColor={'transparent'}
                             style={styles.labelInput}
                             placeholder='CEP'
-                            onChangeText={text => setEmpresa(text)}
+                            onChangeText={text => setCep(text)}
                         />
                     </View>
 
@@ -101,14 +109,27 @@ export default function Endereco(){
                             underlineColor={'transparent'}
                             style={styles.labelInput}
                             placeholder='Complemento'
-                            onChangeText={text => setEmpresa(text)}
+                            onChangeText={text => setComplemento(text)}
                         />
                     </View>
                 </View>
 
             </View>
 
-            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ /* navigator.getParam(email,''); */ navigator.navigate('Categorias')}}>
+            <TouchableOpacity style={styles.buttonContinue}
+
+             onPress={() =>{ 
+                let user =  props.route.params.user;
+                user.endereco = {
+                    endereco:endereco,
+                    numero:numero,
+                    bairro:bairro,
+                    cidade:cidade,
+                    uf:uf,
+                    cep:cep,
+                    complemento:complemento
+                };
+                navigator.navigate('Categorias', {user:user})}}>
                 <Text style={styles.textContinue}>Continuar</Text>
             </TouchableOpacity>
 

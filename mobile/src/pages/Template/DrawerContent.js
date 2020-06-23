@@ -1,8 +1,10 @@
 import React from 'react';
-import {View, StyleSheet} from 'react-native';
+import {View, StyleSheet, TouchableOpacity} from 'react-native';
 import {DrawerContentScrollView, DrawerItem} from '@react-navigation/drawer';
+import AsyncStorage from '@react-native-community/async-storage';
 import {Avatar, Title, Caption, Drawer, Text, TouchableRipple, Switch, DefaultTheme, DarkTheme, Provider as PaperProvider} from 'react-native-paper'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+import firebaseService from '../../services/Firebase/firebaseService';
 
 export function DrawerContent(props) {
 	const [isDarkTheme, setIsDarkTheme] = React.useState(false);
@@ -30,6 +32,31 @@ export function DrawerContent(props) {
 			accent: '#76AB82',
 		},
 	};
+
+	async function signOutUser(){
+        try {
+            firebaseService.signOut();
+            await AsyncStorage.removeItem("@userData");
+			props.navigation.navigate("Login");
+        } catch(error){
+            console.log(error);
+        }
+    }
+
+	const [user, setUser] = React.useState();
+
+	getData = async () => {
+		try {
+			const value = await AsyncStorage.getItem('@userData')
+			if(value !== null) {
+				return JSON.parse(value)
+			}
+		} catch(e) {
+		  console.log(e)
+		}
+	}
+
+	Promise.resolve(getData()).then(res => setUser(res)).catch(err => console.error(err));
 	
     return (
 		<PaperProvider theme={isDarkTheme ? darkTheme : defaultTheme}>
@@ -37,16 +64,13 @@ export function DrawerContent(props) {
 				<DrawerContentScrollView {...props}>
 					<View style={styles.drawerContent}>
 						<View style={styles.userInfoSection}>
-							<View style={{flexDirection:'column', alignItems: 'center', marginTop:15}}>
-								<Avatar.Image 
-									source={{uri: 'https://avatars3.githubusercontent.com/u/62998385?s=200&v=4'}}
-									size={100}
-								/>
+							<TouchableOpacity style={{flexDirection:'column', alignItems: 'center', marginTop:15}} onPress={() => {props.navigation.navigate(user ? 'Profile' : 'Login')}}>
+								<Avatar.Image source={{uri: 'https://avatars3.githubusercontent.com/u/62998385?s=200&v=4'}} size={user ? 100 : 0}/>
 								<View style={{flexDirection: 'column', alignItems: 'center'}}>
-									<Title style={styles.title}>Gubson Silva</Title>
-									<Caption style={styles.caption}>02.560.116/0001-00</Caption>
+									<Title style={styles.title}>{user ? user.email : 'Acesse sua conta agora!'}</Title>
+									<Caption style={styles.caption}>{user ? user.email : 'Clique aqui'}</Caption>
 								</View>
-							</View>
+							</TouchableOpacity>
 						</View>
 						<Drawer.Section style={styles.drawerSection}>
 							<DrawerItem 
@@ -56,7 +80,7 @@ export function DrawerContent(props) {
 										color={!isDarkTheme ? color : 'white'}
 										size={size}
 									/>}
-								label="Home" 
+								label="Anúncios" 
 								labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
 								onPress={() => {props.navigation.navigate('Home')}} 
 							/>
@@ -69,7 +93,7 @@ export function DrawerContent(props) {
 									/>}
 								label="Perfil" 
 								labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
-								onPress={() => {props.navigation.navigate('StudentsList')}} 
+								onPress={() => {props.navigation.navigate('Login')}} 
 							/>
 							<DrawerItem 
 								icon={({color, size}) =>
@@ -80,7 +104,7 @@ export function DrawerContent(props) {
 									/>}
 								label="Meus Serviços" 
 								labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
-								onPress={() => {props.navigation.navigate('StudentsListPaper')}} 
+								onPress={() => {props.navigation.navigate('Login')}} 
 							/>
 							<DrawerItem 
 								icon={({color, size}) =>
@@ -91,7 +115,7 @@ export function DrawerContent(props) {
 									/>}
 								label="Categorias" 
 								labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
-								onPress={() => {props.navigation.navigate('Callback')}} 
+								onPress={() => {props.navigation.navigate('Login')}} 
 							/>
 							<DrawerItem 
 								icon={({color, size}) =>
@@ -102,7 +126,7 @@ export function DrawerContent(props) {
 									/>}
 								label="Planos Lucti" 
 								labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
-								onPress={() => {props.navigation.navigate('DirectCommunication')}} 
+								onPress={() => {props.navigation.navigate('Login')}} 
 							/>
 						</Drawer.Section>
 						<Drawer.Section title="Preferências">
@@ -126,9 +150,9 @@ export function DrawerContent(props) {
 								size={size}
 							/>
 						}
-						label="Desconectar" 
+						label={user ? "Desconectar" : "Conectar"}
 						labelStyle={{color: isDarkTheme ? 'white' : '#202020' }}
-						onPress={() => {}} 
+						onPress={() => {user ? signOutUser() : props.navigation.navigate('Login')}}
 					/>
 				</Drawer.Section>
 			</View>
