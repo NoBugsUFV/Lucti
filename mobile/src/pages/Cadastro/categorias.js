@@ -187,7 +187,10 @@ export default function Categorias(props){
 
             </View>
 
-            <TouchableOpacity style={styles.buttonContinue} onPress={() =>{ navigator.getParam(email,''); navigator.navigate('Final')}}>
+            <TouchableOpacity style={styles.buttonContinue} onPress={
+                //() =>{ navigator.getParam(email,''); navigator.navigate('Final')}
+                cadastrarUsuario
+                }>
                 <Text style={styles.textContinue}>Finalizar</Text>
             </TouchableOpacity>
 

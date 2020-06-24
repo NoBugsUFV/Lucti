@@ -28,13 +28,13 @@ export default function Login(){
         // senha "gilberto"
 
         try {
-            let user = await firebaseService.loginUser(email,senha);
+            let user = await firebaseService.loginUser(email,password);
             if(user!=null){
                 navigator.navigate("Home");
             }
-     }catch{
-         
-     }
+        }catch{
+            alert("eu to cansando")
+        }
     }
 
     return(

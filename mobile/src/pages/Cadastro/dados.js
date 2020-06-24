@@ -12,12 +12,13 @@ export default function Dados(props){
 
     const navigator = useNavigation();
 
-    const [empresa, setEmpresa] = useState();
-    const [cnpj, setCNPJ] = useState();
-    const [registro, setRegistro] = useState();
-    const [site, setSite] = useState();
-    const [whatsApp, setWhatsApp] = useState();
-    const [telefone, setTelefone] = useState();
+
+    const [empresa, setEmpresa] = useState('');
+    const [cnpj, setCNPJ] = useState('');
+    const [registro, setRegistro] = useState('');
+    const [site, setSite] = useState('');
+    const [whatsApp, setWhatsApp] = useState('');
+    const [telefone, setTelefone] = useState('');
     
     return(
         <View style={styles.container} >

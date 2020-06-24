@@ -19,8 +19,10 @@ export default function Dados(props){
     const [empresa, setEmpresa] = useState();
     const [cnpj, setCNPJ] = useState();
     const [site, setSite] = useState();
+    const [registroEstadual, setRegistroEstadual] = useState();
     const [whatsApp, setWhatsApp] = useState();
     const [telefone, setTelefone] = useState();
+    
 
     return(
 
@@ -37,12 +39,15 @@ export default function Dados(props){
                 
                 <View style={styles.formRow}>
                     <Text style={styles.label}>Nome da empresa</Text>
-                    <BasicInput placeholder="Ex: Loja Lucti" autoCorrect={false}/>
+                    <BasicInput placeholder="Ex: Loja Lucti" 
+                    autoCorrect={false}
+                    onChangeText={text => setEmpresa(text)}/>
                 </View>
 
                 <View style={styles.formRow}>
                     <Text style={styles.label}>CNPJ</Text>
-                    <BasicInput placeholder="Digite seu CNPJ" />
+                    <BasicInput placeholder="Digite seu CNPJ"
+                    onChangeText={text => setCNPJ(text)} />
                 </View>
 
                 <View style={styles.formRow}>
