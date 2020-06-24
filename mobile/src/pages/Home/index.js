@@ -7,6 +7,8 @@ import logo from '../../assets/logo.png';
 
 import firebaseService from '../../services/Firebase/firebaseService';
 
+import styles from './styles';
+
 const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
 
 const categories = [
@@ -64,101 +66,35 @@ export default class Home extends React.Component {
                 });
             });
         });
-      }
+    }
 
-        render(){
-            return(
-                <View style={styles.container}>
-                    <View style={styles.north}>
-                        <Image source={logo} style={styles.logo}/>
-                        <Caption style={styles.caption}>Encontre empresas agora!</Caption>
-                        <Searchbar style={styles.searchbar} placeholder="Busque por empresas ou serviços" onChangeText={this._onChangeSearch} value={this.state.searchQuery}/>
-                    </View>
-                    <View style={styles.center}>
-                        <View style={{flexDirection: 'row'}}>
-                            <Title style={{flex: 5}}>Categorias</Title>
-                            <Caption style={{flex: 1}}>Ver todas</Caption>
-                        </View>
-                        <ScrollView horizontal={true}>
-                            <Categories></Categories>
-                        </ScrollView>
-                    </View>
-                    <View style={styles.south}>
-                        <View style={{flexDirection: 'row'}}>
-                            <Title style={{flex: 5}}>Populares</Title>
-                            <Caption style={{flex: 1}}>Ver todas</Caption>
-                        </View>
-                        <ScrollView style={{width: '100%'}}>
-                            <Highlights companies={this.state.companies}></Highlights>
-                        </ScrollView>
-                    </View>
+    render(){
+        return(
+            <View style={styles.container}>
+                <View style={styles.north}>
+                    <Image source={logo} style={styles.logo}/>
+                    <Caption style={styles.caption}>Encontre empresas agora!</Caption>
+                    <Searchbar style={styles.searchbar} placeholder="Busque por empresas ou serviços" onChangeText={this._onChangeSearch} value={this.state.searchQuery}/>
                 </View>
-            );
-        }
+                <View style={styles.center}>
+                    <View style={{flexDirection: 'row'}}>
+                        <Title style={{flex: 5}}>Categorias</Title>
+                        <Caption style={{flex: 1}}>Ver todas</Caption>
+                    </View>
+                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+                        <Categories></Categories>
+                    </ScrollView>
+                </View>
+                <View style={styles.south}>
+                    <View style={{flexDirection: 'row'}}>
+                        <Title style={{flex: 5}}>Populares</Title>
+                        <Caption style={{flex: 1}}>Ver todas</Caption>
+                    </View>
+                    <ScrollView style={{width: '100%'}} showsVerticalScrollIndicator={false}>
+                        <Highlights companies={this.state.companies}></Highlights>
+                    </ScrollView>
+                </View>
+            </View>
+        );
+    }
 }
-
-
-const styles = StyleSheet.create({
-    container: {
-        height: '100%'
-    },
-    north: {
-        flex: 1.5,
-        backgroundColor: '#76AB82',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingBottom: '8%'
-    },
-    center: {
-        flex: 2,
-        flexDirection: 'column',
-        backgroundColor: '#F9F9F9',
-        justifyContent: 'space-between',
-        paddingHorizontal: 10,
-    },
-    south: {
-        flex: 2,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#F9F9F9',
-        paddingHorizontal: 10
-    },
-    circle: {
-        width: 100,
-        height: 100,
-        backgroundColor: '#242424',
-        borderRadius: 50
-    },
-    title: {
-		fontSize: 16,
-		marginTop: 3,
-        fontWeight: 'bold',
-	},
-	caption: {
-        fontSize: 14,
-        marginTop: 10,
-        color: '#364F3C'
-    },
-    logo: {
-        marginTop: 50
-    },
-    searchbar: {
-        marginTop: 20,
-        backgroundColor: '#F9F9F9',
-        borderRadius: 50,
-        width: '98%'
-    },
-    card : {
-        marginTop: 10,
-        marginBottom: 10,
-        marginRight: 10,
-        borderRadius: 10,
-    },
-    categoriesCard : {
-        marginTop: 10,
-        marginBottom: 10,
-        marginRight: 10,
-        borderRadius: 10,
-        width: 140,
-    },
-})
