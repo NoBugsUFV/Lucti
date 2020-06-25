@@ -1,6 +1,8 @@
 import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
+import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
+import { createAppContainer } from 'react-navigation';
 
 import {DrawerContent} from './pages/Template/DrawerContent';
 
@@ -14,22 +16,43 @@ import Final from './pages/Cadastro/final';
 
 
 const Drawer = createDrawerNavigator();
+const Stack = createStackNavigator();
 
-export default function App() {
-	return (
+
+ export function DrawerRoutes(){
+	return(
+		<Drawer.Navigator
+		screenOptions={{headerShown: false}}
+		drawerStyle={{backgroundColor: 'transparent'}} 
+		drawerContent={props => <DrawerContent {...props}/>} 
+		initialRouteName="Home">
+			<Drawer.Screen name="Login" component={Login} />
+			<Drawer.Screen name="Home" component={Home} />
+			
+		</Drawer.Navigator>	
+	);
+}
+
+export function StackRoutes(){
+	return(
+		<Stack.Navigator screenOptions={{headerShown: false}}>
+      		<Stack.Screen name="Cadastro" component={Cadastro} />
+			<Stack.Screen name="Dados" component={Dados} />
+			<Stack.Screen name="Endereco" component={Endereco} />
+			<Stack.Screen name="Categorias" component={Categorias} />
+			<Stack.Screen name="Final" component={Final} />
+		</Stack.Navigator>
+	);
+}
+
+export default function Routes(){
+	return(
 		<NavigationContainer>
-			<Drawer.Navigator 
-			drawerStyle={{backgroundColor: 'transparent'}} 
-			drawerContent={props => <DrawerContent {...props}/>} 
-			initialRouteName="Login">
-				<Drawer.Screen name="Login" component={Login} />
-				<Drawer.Screen name="Home" component={Home} />
-				<Drawer.Screen name="Cadastro" component={Cadastro} />
-				<Drawer.Screen name="Dados" component={Dados} />
-				<Drawer.Screen name="Endereco" component={Endereco} />
-				<Drawer.Screen name="Categorias" component={Categorias} />
-				<Drawer.Screen name="Final" component={Final} />
-			</Drawer.Navigator>
+			<Stack.Navigator screenOptions={{headerShown: false}}>
+				<Stack.Screen name="Drawer" component={DrawerRoutes}/>
+				<Stack.Screen name="Stack" component={StackRoutes}/>
+			</Stack.Navigator>
 		</NavigationContainer>
 	);
 }
+

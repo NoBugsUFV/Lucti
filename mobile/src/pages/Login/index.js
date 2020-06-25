@@ -85,7 +85,7 @@ export default function Login(){
                         </TouchableOpacity>
 
                         <TouchableOpacity style={styles.cadastroButton}
-                        onPress={()=>{ navigator.navigate('Cadastro')}}>
+                        onPress={()=>{ navigator.navigate('Stack', { screen: 'Cadastro' })}}>
                             <Text style={styles.cadastroText}>Ainda não possui cadastro?</Text>
                         </TouchableOpacity>
 
