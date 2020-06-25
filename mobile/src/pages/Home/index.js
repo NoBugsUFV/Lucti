@@ -1,7 +1,8 @@
 import React from 'react';
-import {View, StyleSheet, Image} from 'react-native';
-import {Card, Avatar, Title, Caption, Searchbar} from 'react-native-paper';
-import { ScrollView } from 'react-native-gesture-handler';
+import { View, Image, Text, FlatList } from 'react-native';
+import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
+import { Feather } from '@expo/vector-icons';
+import { Searchbar } from 'react-native-paper';
 
 import logo from '../../assets/logo.png';
 
@@ -9,7 +10,7 @@ import firebaseService from '../../services/Firebase/firebaseService';
 
 import styles from './styles';
 
-const LeftContent = props => <Avatar.Icon {...props} icon="folder" />
+import foto from '../../assets/foto.jpg'
 
 const categories = [
     {id: 1, title: 'Vestuário', picture: 'https://picsum.photos/700'},
@@ -22,41 +23,16 @@ const categories = [
     {id: 8, title: 'Eletrônicos', picture: 'https://picsum.photos/700'}
 ]
 
-export const Categories = props => 
-categories.map(categorie => {
-    return (
-        <Card style={styles.categoriesCard} key={categorie.id}>
-            <Card.Cover source={{ uri: categorie.picture }} />
-            <Card.Content style={{alignItems: 'center', marginTop: 5}}>
-                <Title style={{lineHeight: 20, fontSize: 18}}>{categorie.title}</Title>
-            </Card.Content>
-        </Card>
-    )
-})
+export default function Home({navigation}){
 
-export const Highlights = props => {
-    const keys = Object.keys(props.companies ? props.companies : {})
-    return keys.map(key => {
-        return (
-            <Card style={styles.card} key={key}>
-                <Card.Cover source={{ uri: 'https://i.imgur.com/sv5ruRC.jpg' }} />
-                <Card.Content style={{alignItems: 'center', marginTop: 5}}>
-                    <Title style={{lineHeight: 20, fontSize: 18}}>{props.companies[key].dados.empresa}</Title>
-                </Card.Content>
-            </Card>
-        )
-    })
-}
-
-export default class Home extends React.Component {
-    state = {
+    var state = {
         searchQuery: '',
         companies: null
     };
 
-    _onChangeSearch = query => this.setState({ searchQuery: query });
+    var _onChangeSearch = query => this.setState({ searchQuery: query });
 
-    componentDidMount() {
+    function componentDidMount() {
         firebaseService.readCompanies().then(ref => {
             ref.on('value', querySnapShot => {
                 let data = querySnapShot.val() ? querySnapShot.val() : {};
@@ -67,34 +43,128 @@ export default class Home extends React.Component {
             });
         });
     }
+    
+    return(
+        <View style={styles.container}>
+            <View style={styles.header}>
+                
+                <TouchableOpacity onPress={()=>{navigation.openDrawer()}}>
+                    <Feather name="menu" size={28} color="#3B5C2F"/>
+                </TouchableOpacity>
 
-    render(){
-        return(
-            <View style={styles.container}>
-                <View style={styles.north}>
-                    <Image source={logo} style={styles.logo}/>
-                    <Caption style={styles.caption}>Encontre empresas agora!</Caption>
-                    <Searchbar style={styles.searchbar} placeholder="Busque por empresas ou serviços" onChangeText={this._onChangeSearch} value={this.state.searchQuery}/>
-                </View>
-                <View style={styles.center}>
-                    <View style={{flexDirection: 'row'}}>
-                        <Title style={{flex: 5}}>Categorias</Title>
-                        <Caption style={{flex: 1}}>Ver todas</Caption>
-                    </View>
-                    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-                        <Categories></Categories>
-                    </ScrollView>
-                </View>
-                <View style={styles.south}>
-                    <View style={{flexDirection: 'row'}}>
-                        <Title style={{flex: 5}}>Populares</Title>
-                        <Caption style={{flex: 1}}>Ver todas</Caption>
-                    </View>
-                    <ScrollView style={{width: '100%'}} showsVerticalScrollIndicator={false}>
-                        <Highlights companies={this.state.companies}></Highlights>
-                    </ScrollView>
-                </View>
+                <Image source={logo} style={styles.logo}/>
+
+                <Text style={styles.subtitle}>O que você procura?</Text>
+
+                <Searchbar style={styles.searchbar} 
+                placeholder="Busque empresas ou serviços" 
+                onChangeText={_onChangeSearch} 
+                value={state.searchQuery} 
+                />
+
             </View>
-        );
-    }
+
+            <ScrollView style={styles.content} vertical showsVerticalScrollIndicator={false}>
+                <Text style={styles.categoriesTitle}>Categories</Text>
+                <ScrollView style={styles.categories} horizontal showsHorizontalScrollIndicator={false}>
+                    <View style={styles.category}>
+                        <Image style={styles.categoryImage} source={foto}/>
+                        <Text style={styles.categoryName}>{categories[0].title}</Text>
+                    </View>
+                    <View style={styles.category}>
+                        <Image style={styles.categoryImage} source={foto}/>
+                        <Text style={styles.categoryName}>{categories[1].title}</Text>
+                    </View>
+                    <View style={styles.category}>
+                        <Image style={styles.categoryImage} source={foto}/>
+                        <Text style={styles.categoryName}>{categories[2].title}</Text>
+                    </View>
+                    <View style={styles.category}>
+                        <Image style={styles.categoryImage} source={foto}/>
+                        <Text style={styles.categoryName}>{categories[3].title}</Text>
+                    </View>
+                    <View style={styles.category}>
+                        <Image style={styles.categoryImage} source={foto}/>
+                        <Text style={styles.categoryName}>{categories[4].title}</Text>
+                    </View>
+                    <View style={styles.category}>
+                        <Image style={styles.categoryImage} source={foto}/>
+                        <Text style={styles.categoryName}>{categories[5].title}</Text>
+                    </View>
+                </ScrollView>
+
+                <Text style={styles.categoriesTitle}>Populares</Text>
+                <ScrollView style={styles.companies} vertical showsVerticalScrollIndicator={false}>
+                    <View style={styles.companyCard}>
+                        
+                        <Image style={styles.companyLogo} source={foto} />
+                        <View style={styles.companyInfo}>
+                            <Text style={styles.companyName}>Nome da Empresa</Text>
+                            <Text style={styles.companyServices} >Serviços ou produtos</Text>
+                            <Text style={styles.companyPhone} >(00) 90000-0000</Text>
+                        </View>
+                        
+                    </View>
+
+                    <View style={styles.companyCard}>
+                        
+                        <Image style={styles.companyLogo} source={foto} />
+                        <View style={styles.companyInfo}>
+                            <Text style={styles.companyName}>Nome da Empresa</Text>
+                            <Text style={styles.companyServices} >Serviços ou produtos</Text>
+                            <Text style={styles.companyPhone} >(00) 90000-0000</Text>
+                        </View>
+                        
+                    </View>
+
+                    <View style={styles.companyCard}>
+                        
+                        <Image style={styles.companyLogo} source={foto} />
+                        <View style={styles.companyInfo}>
+                            <Text style={styles.companyName}>Nome da Empresa</Text>
+                            <Text style={styles.companyServices} >Serviços ou produtos</Text>
+                            <Text style={styles.companyPhone} >(00) 90000-0000</Text>
+                        </View>
+                        
+                    </View>
+
+                    <View style={styles.companyCard}>
+                        
+                        <Image style={styles.companyLogo} source={foto} />
+                        <View style={styles.companyInfo}>
+                            <Text style={styles.companyName}>Nome da Empresa</Text>
+                            <Text style={styles.companyServices} >Serviços ou produtos</Text>
+                            <Text style={styles.companyPhone} >(00) 90000-0000</Text>
+                        </View>
+                        
+                    </View>
+
+                    <View style={styles.companyCard}>
+                        
+                        <Image style={styles.companyLogo} source={foto} />
+                        <View style={styles.companyInfo}>
+                            <Text style={styles.companyName}>Nome da Empresa</Text>
+                            <Text style={styles.companyServices} >Serviços ou produtos</Text>
+                            <Text style={styles.companyPhone} >(00) 90000-0000</Text>
+                        </View>
+                        
+                    </View>
+
+                    <View style={styles.companyCard}>
+                        
+                        <Image style={styles.companyLogo} source={foto} />
+                        <View style={styles.companyInfo}>
+                            <Text style={styles.companyName}>Nome da Empresa</Text>
+                            <Text style={styles.companyServices} >Serviços ou produtos</Text>
+                            <Text style={styles.companyPhone} >(00) 90000-0000</Text>
+                        </View>
+                        
+                    </View>
+
+                </ScrollView>
+
+            </ScrollView>
+
+        </View>
+    );
 }

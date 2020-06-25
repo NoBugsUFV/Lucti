@@ -6,8 +6,11 @@ import { createAppContainer } from 'react-navigation';
 
 import {DrawerContent} from './pages/Template/DrawerContent';
 
+// Rotas do Drawer
 import Home from './pages/Home';
 import Login from './pages/Login';
+
+//Rotas do Stack
 import Cadastro from './pages/Cadastro';
 import Dados from './pages/Cadastro/dados';
 import Endereco from './pages/Cadastro/endereco';
@@ -28,7 +31,6 @@ const Stack = createStackNavigator();
 		initialRouteName="Home">
 			<Drawer.Screen name="Login" component={Login} />
 			<Drawer.Screen name="Home" component={Home} />
-			
 		</Drawer.Navigator>	
 	);
 }

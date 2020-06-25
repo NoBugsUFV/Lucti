@@ -1,69 +1,94 @@
 import {StyleSheet} from 'react-native';
 
 export default StyleSheet.create({
-    container: {
-        height: '100%'
+
+//Geral da página
+    container:{
+        flex: 1,
     },
-    north: {
-        height:230,
-        flex: 1.5,
-        flexDirection: 'column',
-        backgroundColor: '#76AB82',
-        alignItems: 'center',
-        justifyContent: 'center',
-        paddingBottom: '8%',
+
+//Header
+    header:{
+        paddingHorizontal: 20,
+        paddingVertical: 35,
+        backgroundColor: "#76AB82",
+        height:193,
+    },
+    logo:{
+        alignSelf: 'center',
+        marginTop: -30,
+        marginBottom: 10,
+    },
+    subtitle:{
+        fontSize: 20,
+        alignSelf: 'center',
+        color: '#3B5C2F',
+        paddingVertical: 10
+    },
+    searchbar:{
+        borderRadius: 40
+    },
+
+//Conteúdo da página
+    content:{
+        paddingHorizontal: 20,
+        paddingVertical: 10
+    },
+//Categorias
+    categoriesTitle:{
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: "#3B5C2F"
+    },
+    categories:{
+        paddingVertical: 10,
+    },
+    category:{
+        width: 100,
+        marginRight: 10
+    },
+    categoryImage:{
+        width: 100,
+        height: 148,
+        borderRadius: 10,
+    },
+    categoryName:{
+        alignSelf: 'center'
+    },
+//Empresas
+    companies:{
+        alignSelf: 'center',
+        width: "100%",
+        marginTop: 10,
+    },
+    companyCard:{
+        flexDirection: 'row',
+        backgroundColor: "#76AB82",
+        height: 89,
+        paddingVertical: 10,
+        paddingHorizontal: 10,
+        marginBottom: 15,
+        borderRadius: 10,
+    },
+    companyLogo:{
+        width: 70,
+        height: 70,
+        borderRadius: 10,
+    },
+    companyInfo:{
         paddingHorizontal: 20,
     },
-    center: {
-        flex: 2,
-        flexDirection: 'column',
-        backgroundColor: '#F9F9F9',
-        justifyContent: 'space-between',
-        paddingHorizontal: 10,
-    },
-    south: {
-        flex: 2,
-        alignItems: 'center',
-        justifyContent: 'center',
-        backgroundColor: '#F9F9F9',
-        paddingHorizontal: 10
-    },
-    circle: {
-        width: 100,
-        height: 100,
-        backgroundColor: '#242424',
-        borderRadius: 50
-    },
-    title: {
-		fontSize: 16,
-		marginTop: 3,
+    companyName:{
+        fontSize: 18,
         fontWeight: 'bold',
-	},
-	caption: {
-        fontSize: 14,
-        marginTop: 10,
-        color: '#364F3C'
+        color: '#EEEEEE'
     },
-    logo: {
-        marginTop: 50
+    companyServices:{
+        color: '#3B5C2F',
+        paddingVertical: 2
     },
-    searchbar: {
-        marginTop: 20,
-        backgroundColor: '#F9F9F9',
-        borderRadius: 50,
-        width: '98%'
-    },
-    card : {
-        marginTop: 10,
-        marginBottom: 10,
-        marginRight: 10,
-        borderRadius: 10,
-    },
-    categoriesCard : {
-        marginTop: 10,
-        marginBottom: 10,
-        marginRight: 10,
-        borderRadius: 10,
-        width: 140,
-    },
-})
+    companyPhone:{
+        color: '#3B5C2F'
+    }
+
+});
