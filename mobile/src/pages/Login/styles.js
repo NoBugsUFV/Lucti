@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
-import Constants from 'expo-constants';
 
 export default StyleSheet.create({
+
     container: { 
         flex: 1,
         color: "#EEEEEE",
@@ -30,39 +30,33 @@ export default StyleSheet.create({
     },
     form:{
         paddingHorizontal: 40,
-        paddingVertical: 60,
+        paddingTop: 50
     },
-
     formLabel:{
         fontSize: 16,
-        marginLeft: 17,
-        marginBottom: 1,
-    },  
-
-    emailInput:{
-        borderStyle: "solid",
-        borderTopRightRadius:40,
-        borderTopLeftRadius:40,
-        borderRadius: 40,
-        backgroundColor: "#CCCCCC",
-        marginBottom: 20,
-        height: 50,
+        marginLeft: 25,
+        marginBottom: 2,
     },
-    passwordInput:{
-        backgroundColor: "#CCCCCC",
+    input:{
+
         borderTopRightRadius:40,
         borderTopLeftRadius:40,
         borderRadius: 40,
-        height: 50
+        backgroundColor: "#CCCCCC",
+        paddingLeft: 10,
+        height: 60,
+        fontSize: 16,
+        color: "#3B5C2F",
+        marginBottom: 10
     },
     submit:{
         alignSelf: "center",
-        marginTop: 25,
+        marginTop: 20
     },
     buttonSubmit:{
         justifyContent: 'center',
         alignItems: 'center',
-        width: 280,
+        width: 230,
         height: 50,
         borderRadius: 40,
         backgroundColor: "#76AB82",
@@ -75,7 +69,6 @@ export default StyleSheet.create({
         marginTop: 20
     },
     forgotButton:{
-        marginTop: 20,
         justifyContent: 'center',
         alignItems: 'center',
     },
@@ -98,4 +91,5 @@ export default StyleSheet.create({
         alignSelf: "center"
     }
     
-})
+
+});

@@ -65,7 +65,7 @@ export default function Home({navigation}){
             </View>
 
             <ScrollView style={styles.content} vertical showsVerticalScrollIndicator={false}>
-                <Text style={styles.categoriesTitle}>Categories</Text>
+                <Text style={styles.categoriesTitle}>Categorias</Text>
                 <ScrollView style={styles.categories} horizontal showsHorizontalScrollIndicator={false}>
                     <View style={styles.category}>
                         <Image style={styles.categoryImage} source={foto}/>

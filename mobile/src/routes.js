@@ -28,7 +28,7 @@ const Stack = createStackNavigator();
 		screenOptions={{headerShown: false}}
 		drawerStyle={{backgroundColor: 'transparent'}} 
 		drawerContent={props => <DrawerContent {...props}/>} 
-		initialRouteName="Home">
+		initialRouteName="Login">
 			<Drawer.Screen name="Login" component={Login} />
 			<Drawer.Screen name="Home" component={Home} />
 		</Drawer.Navigator>	
