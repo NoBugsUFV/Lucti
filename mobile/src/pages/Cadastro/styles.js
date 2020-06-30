@@ -126,6 +126,12 @@ export default StyleSheet.create({
         paddingVertical: 5,
         borderRadius: 40,
     },
+    pressedCategoryButton:{
+        backgroundColor: '#000',
+        paddingHorizontal: 15,
+        paddingVertical: 5,
+        borderRadius: 40,
+    },
      // Final
 
      titleFinal:{

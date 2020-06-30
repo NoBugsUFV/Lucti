@@ -45,7 +45,7 @@ export default function Dados(props){
                     <Text style={styles.label}>CNPJ</Text>
                     <TextInput
                         style={styles.labelInput}
-                        placeholder='Digite seu CNPJ'
+                        placeholder='12.345.678/1234-56'
                         placeholderTextColor="#3B5C2F"
                         keyboardType='numeric'
                         maxLength={14}
@@ -57,7 +57,7 @@ export default function Dados(props){
                     <Text style={styles.label}>Registro Estadual</Text>
                     <TextInput
                         style={styles.labelInput}
-                        placeholder='Digite seu Registro Estadual'
+                        placeholder='123.456.789/1234'
                         placeholderTextColor="#3B5C2F"
                         keyboardType='numeric'
                         maxLength={9}
@@ -69,7 +69,7 @@ export default function Dados(props){
                     <Text style={styles.label}>Site</Text>
                     <TextInput
                         style={styles.labelInput}
-                        placeholder='Digite seu site'
+                        placeholder='Ex: nobugs.com.br'
                         placeholderTextColor="#3B5C2F"
                         keyboardType='url'
                         onChangeText={text => setSite(text)}
