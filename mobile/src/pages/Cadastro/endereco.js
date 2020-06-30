@@ -47,7 +47,7 @@ export default function Endereco(props){
                         <Text style={styles.label}>Nº</Text>
                         <TextInput
                             style={styles.labelInput}
-                            placeholder='Número'
+                            placeholder='Ex: 90'
                             keyboardType='numeric'
                             placeholderTextColor="#3B5C2F"
                             onChangeText={text => setNumero(text)}
@@ -58,7 +58,7 @@ export default function Endereco(props){
                         <Text style={styles.label}>Bairro</Text>
                         <TextInput
                             style={styles.labelInput}
-                            placeholder='Bairro'
+                            placeholder='Ex: Centro'
                             autoCorrect={false}
                             placeholderTextColor="#3B5C2F"
                             onChangeText={text => setBairro(text)}
@@ -72,7 +72,7 @@ export default function Endereco(props){
                         <Text style={styles.label}>Cidade</Text>
                         <TextInput
                             style={styles.labelInput}
-                            placeholder='Cidade'
+                            placeholder='Ex: Viçosa'
                             autoCorrect={false}
                             placeholderTextColor="#3B5C2F"
                             onChangeText={text => setCidade(text)}
@@ -83,7 +83,7 @@ export default function Endereco(props){
                         <Text style={styles.label}>UF</Text>
                         <TextInput
                             style={styles.labelInput}
-                            placeholder='UF'
+                            placeholder='Ex: MG'
                             placeholderTextColor="#3B5C2F"
                             maxLength={2}
                             onChangeText={text => setUf(text)}
@@ -96,7 +96,7 @@ export default function Endereco(props){
                         <Text style={styles.label}>CEP</Text>
                         <TextInput
                             style={styles.labelInput}
-                            placeholder='CEP'
+                            placeholder='Ex: 12345-678'
                             placeholderTextColor="#3B5C2F"
                             maxLength={8}
                             keyboardType='numeric'
@@ -108,7 +108,7 @@ export default function Endereco(props){
                         <Text style={styles.label}>Complemento</Text>
                         <TextInput
                             style={styles.labelInput}
-                            placeholder='Complemento'
+                            placeholder='Ex: A'
                             autoCorrect={false}
                             placeholderTextColor="#3B5C2F"
                             onChangeText={text => setComplemento(text)}
