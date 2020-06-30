@@ -26,9 +26,9 @@ export default class FirebaseService {
         firebaseDatabase.ref('/users').child(key).set(user);
     };
 
-    static createAuthUser(user){
+    static async createAuthUser(user){
         try {
-            firebaseAuth.createUserWithEmailAndPassword(user.login.email, user.login.password)
+            await firebaseAuth.createUserWithEmailAndPassword(user.login.email, user.login.password)
             .then(
                 response => { 
                     alert("Você receberá um email em instantes para validar seu cadastro")
@@ -36,13 +36,21 @@ export default class FirebaseService {
                            ()=>{
                                console.log(user)
                                var key = firebaseDatabase.ref('/users').push().key;
-                               firebaseDatabase.ref('/users').child(key).set(user);
+                               firebaseDatabase.ref('/users').child(key).set(user).then(
+                                    ()=>{
+                                        return true;
+                                    }
+                               ).catch(err => {
+                                    alert("Falha no cadastro da empresa, por favor tente mais tarde")
+                                    return false;
+                               });
                         }
                     )  
                }
             ).catch(err => {
                     alert(err)
             });
+            
         } catch (error) {
              alert(error)
         }

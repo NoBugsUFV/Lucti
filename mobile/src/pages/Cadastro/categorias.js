@@ -12,10 +12,14 @@ import firebaseService from '../../services/Firebase/firebaseService';
 export default function Categorias(props){
     const navigator = useNavigation();
 
-    function cadastrarUsuario() {
+    async function cadastrarUsuario() {
         let user = props.route.params.user;
-        firebaseService.createAuthUser(user);
-        navigator.navigate('Final');
+        const validation = await firebaseService.createAuthUser(user);
+        if(validation){
+            navigator.navigate('Final');
+        }else{
+            alert("Falha no cadastro de informações")
+        }
     }
 
     return(

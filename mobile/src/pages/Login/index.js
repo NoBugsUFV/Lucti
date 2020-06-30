@@ -39,7 +39,7 @@ export default function Login2(){
             }
             
         }catch{
-            alert("eu to cansando")
+            alert("Falha no login. Por favor tente mais tarde")
         }
     }
 
