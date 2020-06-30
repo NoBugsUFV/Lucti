@@ -28,9 +28,16 @@ export default function Login2(){
 
         try {
             let user = await firebaseService.loginUser(email,password);
-            if(user!=null){
-                navigator.navigate("Home");
+            if(user == undefined){
+                alert("Usuário não cadastrado")
+            }else{
+                if(user.user.emailVerified == true){
+                    navigator.navigate("Home");
+                }else{
+                    alert("O email ainda não foi verificado")
+                }
             }
+            
         }catch{
             alert("eu to cansando")
         }

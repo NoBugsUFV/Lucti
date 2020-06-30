@@ -27,7 +27,7 @@ export default class FirebaseService {
     };
 
     static createAuthUser(user){
-        // try {
+        try {
             firebaseAuth.createUserWithEmailAndPassword(user.login.email, user.login.password)
             .then(
                 response => { 
@@ -43,28 +43,28 @@ export default class FirebaseService {
             ).catch(err => {
                     alert(err)
             });
-        // } catch (error) {
-            // alert(error)
-        // }
+        } catch (error) {
+             alert(error)
+        }
     }
 
     static async loginUser(email, password){
         try {
-            await firebaseAuth.signInWithEmailAndPassword(email, password).catch(
+            const user = await firebaseAuth.signInWithEmailAndPassword(email, password).catch(
                 function(error){
                     var errorCode = error.code;
                     var errorMessage = error.message;
                     alert(errorCode + "__"+ errorMessage +"__"+ error.toString())
                 }
             )
+            console.log(user)
+            return user;
 
        } catch (error) {
            alert(error.toString())
            console.log(error.toString())
-           return error
+           return error;
        }
-
-       return firebaseAuth.currentUser;
     }
 
     static doPasswordReset(email){
