@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
+import React from 'react';
 import { View, Text } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { TouchableOpacity, State } from 'react-native-gesture-handler';
+import { TouchableOpacity} from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';

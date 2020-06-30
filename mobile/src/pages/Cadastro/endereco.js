@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
-import { View, Text } from 'react-native';
+import { View, Text, TextInput, KeyboardAvoidingView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
-import { TextInput } from 'react-native-paper';
 import { TouchableOpacity, State } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 
@@ -20,22 +19,24 @@ export default function Endereco(props){
     const [complemento, setComplemento] = useState('');
 
     return(
-        <View style={styles.container}>
+
+        <KeyboardAvoidingView style={styles.container} behavior='position'keyboardVerticalOffset={-190}>
             <View style={styles.header}>
-            <TouchableOpacity onPress={()=>{navigator.goBack()}}>
+                <TouchableOpacity onPress={()=>{navigator.goBack()}}>
                     <Feather name="arrow-left" size={28} color="#616161"/>
                 </TouchableOpacity>
                 <Text style={styles.title}>Seu endereço</Text>
             </View>
+
             <View style={styles.form}>
 
                 <View style={styles.formRow}>
                     <Text style={styles.label}>Endereço</Text>
                     <TextInput
-                        theme={{colors: {primary: 'transparent'}}}
-                        underlineColor={'transparent'}
                         style={styles.labelInput}
                         placeholder='Av. Brasil'
+                        autoCorrect={false}
+                        placeholderTextColor="#3B5C2F"
                         onChangeText={text => setEndereco(text)}
                     />
                 </View>
@@ -45,10 +46,10 @@ export default function Endereco(props){
                     <View style={styles.rowNum}>
                         <Text style={styles.label}>Nº</Text>
                         <TextInput
-                            theme={{colors: {primary: 'transparent'}}}
-                            underlineColor={'transparent'}
                             style={styles.labelInput}
                             placeholder='Número'
+                            keyboardType='numeric'
+                            placeholderTextColor="#3B5C2F"
                             onChangeText={text => setNumero(text)}
                         />
                     </View>
@@ -56,10 +57,10 @@ export default function Endereco(props){
                     <View style={styles.rowBairro}>
                         <Text style={styles.label}>Bairro</Text>
                         <TextInput
-                            theme={{colors: {primary: 'transparent'}}}
-                            underlineColor={'transparent'}
                             style={styles.labelInput}
                             placeholder='Bairro'
+                            autoCorrect={false}
+                            placeholderTextColor="#3B5C2F"
                             onChangeText={text => setBairro(text)}
                         />
                     </View>
@@ -70,10 +71,10 @@ export default function Endereco(props){
                     <View style={styles.rowCidade}>
                         <Text style={styles.label}>Cidade</Text>
                         <TextInput
-                            theme={{colors: {primary: 'transparent'}}}
-                            underlineColor={'transparent'}
                             style={styles.labelInput}
                             placeholder='Cidade'
+                            autoCorrect={false}
+                            placeholderTextColor="#3B5C2F"
                             onChangeText={text => setCidade(text)}
                         />
                     </View>
@@ -81,10 +82,10 @@ export default function Endereco(props){
                     <View style={styles.rowUF}>
                         <Text style={styles.label}>UF</Text>
                         <TextInput
-                            theme={{colors: {primary: 'transparent'}}}
-                            underlineColor={'transparent'}
                             style={styles.labelInput}
                             placeholder='UF'
+                            placeholderTextColor="#3B5C2F"
+                            maxLength={2}
                             onChangeText={text => setUf(text)}
                         />
                     </View>
@@ -94,10 +95,11 @@ export default function Endereco(props){
                     <View style={styles.rowCep}>
                         <Text style={styles.label}>CEP</Text>
                         <TextInput
-                            theme={{colors: {primary: 'transparent'}}}
-                            underlineColor={'transparent'}
                             style={styles.labelInput}
                             placeholder='CEP'
+                            placeholderTextColor="#3B5C2F"
+                            maxLength={8}
+                            keyboardType='numeric'
                             onChangeText={text => setCep(text)}
                         />
                     </View>
@@ -105,15 +107,14 @@ export default function Endereco(props){
                     <View style={styles.rowComplemento}>
                         <Text style={styles.label}>Complemento</Text>
                         <TextInput
-                            theme={{colors: {primary: 'transparent'}}}
-                            underlineColor={'transparent'}
                             style={styles.labelInput}
                             placeholder='Complemento'
+                            autoCorrect={false}
+                            placeholderTextColor="#3B5C2F"
                             onChangeText={text => setComplemento(text)}
                         />
                     </View>
                 </View>
-
             </View>
 
             <TouchableOpacity style={styles.buttonContinue}
@@ -133,6 +134,7 @@ export default function Endereco(props){
                 <Text style={styles.textContinue}>Continuar</Text>
             </TouchableOpacity>
 
-        </View>
+        </KeyboardAvoidingView>
+        
     );
 }

@@ -2,7 +2,6 @@ import * as React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { createStackNavigator } from '@react-navigation/stack';
 import { NavigationContainer } from '@react-navigation/native';
-import { createAppContainer } from 'react-navigation';
 
 import {DrawerContent} from './pages/Template/DrawerContent';
 
@@ -16,6 +15,7 @@ import Dados from './pages/Cadastro/dados';
 import Endereco from './pages/Cadastro/endereco';
 import Categorias from './pages/Cadastro/categorias';
 import Final from './pages/Cadastro/final';
+
 
 
 const Drawer = createDrawerNavigator();

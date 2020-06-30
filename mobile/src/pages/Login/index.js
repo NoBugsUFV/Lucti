@@ -48,10 +48,10 @@ export default function Login2(){
             <View style={styles.form}>
 
                 <Text style={styles.formLabel}>Email</Text>
-                <TextInput style={styles.input} placeholder="Digite seu email" placeholderTextColor="#616161" selectionColor="#3B5C2F"/>
+                <TextInput style={styles.input} autoCorrect={false} keyboardType='email-address' placeholder="Digite seu email" placeholderTextColor="#616161" selectionColor="#3B5C2F" onChangeText={text => setEmail(text)}/>
 
                 <Text style={styles.formLabel}>Senha</Text>
-                <TextInput style={styles.input} placeholder="Digite sua senha" placeholderTextColor="#616161" selectionColor="#3B5C2F"/>
+                <TextInput style={styles.input} placeholder="Digite sua senha" autoCorrect={false} secureTextEntry={true} placeholderTextColor="#616161" selectionColor="#3B5C2F" onChangeText={text => setPassword(text)}/>
 
             </View>
 
