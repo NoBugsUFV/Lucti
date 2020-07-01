@@ -45,7 +45,16 @@ export default function Home({navigation}){
             });
         });
     }
-    companyController.readCompanies();
+    companyController.readCompanies().then(ref => {
+            ref.on('value', querySnapShot => {
+                let data = querySnapShot.val() ? querySnapShot.val() : {};
+                let todoItems = {...data};
+                console.log(data)
+                this.setState({
+                  companies: todoItems,
+                });
+            });
+        });
     
     return(
         <View style={styles.container}>
