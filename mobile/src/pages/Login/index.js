@@ -7,8 +7,7 @@ import logoImg from '../../assets/logo.png';
 
 import styles from './styles';
 
-import firebaseService from '../../services/Firebase/firebaseService';
-
+import userController from '../../Controllers/userController';
 
 export default function Login2(){
 
@@ -18,16 +17,8 @@ export default function Login2(){
     const [password, setPassword] = useState();
 
     async function signInUser(){
-
-        //login pra testes
-        // email "gilberto@gmail.com"
-        // senha "gilberto"
-        //ou 
-        // email "gil@gmail.com"
-        // senha "gilberto"
-
         try {
-            let user = await firebaseService.loginUser(email,password);
+            let user = await userController.loginUser(email,password);
             if(user == undefined){
                 alert("Usuário não cadastrado")
             }else{
@@ -71,7 +62,7 @@ export default function Login2(){
                 <View style={styles.links}>
 
                     <TouchableOpacity style={styles.forgotButton}
-                    onPress={()=>{firebaseService.doPasswordReset(email)}}
+                    onPress={()=>{userController.doPasswordReset(email)}}
                     >
                         <Text style={styles.forgotText}>Esqueci minha senha</Text>
                     </TouchableOpacity>

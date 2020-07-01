@@ -105,7 +105,7 @@ export default function Dados(props){
 
             <TouchableOpacity style={styles.buttonContinue} onPress={() =>{
                 let user = props.route.params.user;
-                user.dados = {
+                user.empresa = {
                     empresa:empresa,
                     cnpj:cnpj,
                     registro:registro,

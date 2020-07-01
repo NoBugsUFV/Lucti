@@ -6,7 +6,8 @@ import { Searchbar } from 'react-native-paper';
 
 import logo from '../../assets/logo.png';
 
-import firebaseService from '../../services/Firebase/firebaseService';
+//import useController from '../../services/Firebase/useController';
+import companyController from '../../Controllers/companyController';
 
 import styles from './styles';
 
@@ -33,16 +34,18 @@ export default function Home({navigation}){
     var _onChangeSearch = query => this.setState({ searchQuery: query });
 
     function componentDidMount() {
-        firebaseService.readCompanies().then(ref => {
+        companyController.readCompanies().then(ref => {
             ref.on('value', querySnapShot => {
                 let data = querySnapShot.val() ? querySnapShot.val() : {};
                 let todoItems = {...data};
+                console.log(data)
                 this.setState({
                   companies: todoItems,
                 });
             });
         });
     }
+    companyController.readCompanies();
     
     return(
         <View style={styles.container}>

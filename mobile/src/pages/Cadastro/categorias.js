@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
-import firebaseService from '../../services/Firebase/firebaseService';
+import userController from '../../Controllers/userController';
 
 
 export default function Categorias(props){
@@ -14,7 +14,7 @@ export default function Categorias(props){
 
     async function cadastrarUsuario() {
         let user = props.route.params.user;
-        const validation = await firebaseService.createAuthUser(user);
+        const validation = await userController.createAuthUser(user);
         if(validation){
             navigator.navigate('Final');
         }else{

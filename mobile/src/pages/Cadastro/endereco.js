@@ -121,7 +121,7 @@ export default function Endereco(props){
 
              onPress={() =>{ 
                 let user =  props.route.params.user;
-                user.endereco = {
+                user.empresa.endereco = {
                     endereco:endereco,
                     numero:numero,
                     bairro:bairro,
