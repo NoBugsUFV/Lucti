@@ -3,6 +3,7 @@ import { View, Text, TextInput, KeyboardAvoidingView } from 'react-native';
 import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity, State } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { TextInputMask } from 'react-native-masked-text'
 
 import styles from './styles';
 
@@ -94,11 +95,16 @@ export default function Endereco(props){
                 <View style={styles.formRowData}>
                     <View style={styles.rowCep}>
                         <Text style={styles.label}>CEP</Text>
-                        <TextInput
+                        <TextInputMask
+                            type={'custom'}
+                            options={{
+                                mask: '99999-999'
+                            }}
+                            value={cep}
                             style={styles.labelInput}
                             placeholder='Ex: 12345-678'
                             placeholderTextColor="#3B5C2F"
-                            maxLength={8}
+                            maxLength={9}
                             keyboardType='numeric'
                             onChangeText={text => setCep(text)}
                         />

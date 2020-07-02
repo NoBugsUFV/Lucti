@@ -4,6 +4,7 @@ import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity, State } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import firebaseService from '../../services/Firebase/firebaseService';
+import { TextInputMask } from 'react-native-masked-text'
 
 import styles from './styles';
 
@@ -43,24 +44,31 @@ export default function Dados(props){
 
                 <View style={styles.formRow}>
                     <Text style={styles.label}>CNPJ</Text>
-                    <TextInput
+                    <TextInputMask
+                        type={'cnpj'}
+                        value={cnpj}
                         style={styles.labelInput}
                         placeholder='12.345.678/1234-56'
                         placeholderTextColor="#3B5C2F"
                         keyboardType='numeric'
-                        maxLength={14}
+                        maxLength={18}
                         onChangeText={text => setCNPJ(text)}
                     />
                 </View>
 
                 <View style={styles.formRow}>
                     <Text style={styles.label}>Registro Estadual</Text>
-                    <TextInput
+                    <TextInputMask
+                        type={'custom'}
+                        options={{
+                            mask: '999.999.999/9999'
+                        }}
+                        value={registro}
                         style={styles.labelInput}
                         placeholder='123.456.789/1234'
                         placeholderTextColor="#3B5C2F"
                         keyboardType='numeric'
-                        maxLength={9}
+                        maxLength={16}
                         onChangeText={text => setRegistro(text)}
                     />
                 </View>
@@ -79,11 +87,17 @@ export default function Dados(props){
                 <View style={styles.formRowData}>
                     <View style={styles.row}>
                         <Text style={styles.label}>Whatsapp</Text>
-                        <TextInput
+                        <TextInputMask
+                            type={'cel-phone'}
+                            options={{
+                                maskType: 'BRL',
+                                withDDD: true,
+                            }}
+                            value={whatsApp}
                             style={styles.labelInput}
                             keyboardType='phone-pad'
                             placeholder='(00) 90000-0000'
-                            maxLength={11}
+                            maxLength={15}
                             placeholderTextColor="#3B5C2F"
                             onChangeText={text => setWhatsApp(text)}
                         />
@@ -91,11 +105,17 @@ export default function Dados(props){
 
                     <View style={styles.row}>
                         <Text style={styles.label}>Telefone</Text>
-                        <TextInput
+                        <TextInputMask
+                            type={'cel-phone'}
+                            options={{
+                                maskType: 'BRL',
+                                withDDD: true,
+                            }}
+                            value={telefone}
                             style={styles.labelInput}
                             keyboardType='phone-pad'
                             placeholder='(00) 0000-0000'
-                            maxLength={10}
+                            maxLength={15}
                             placeholderTextColor="#3B5C2F"
                             onChangeText={text => setTelefone(text)}
                         />
