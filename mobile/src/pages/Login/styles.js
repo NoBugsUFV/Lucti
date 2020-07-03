@@ -49,6 +49,16 @@ export default StyleSheet.create({
         color: "#3B5C2F",
         marginBottom: 10
     },
+    labelPassword:{
+        height: 60,
+        borderTopRightRadius:40,
+        borderTopLeftRadius:40,
+        borderRadius:40,
+        backgroundColor: "#CCCCCC",
+        paddingLeft: 20,
+        paddingRight:20,
+        paddingTop: 20,
+    },
     submit:{
         alignSelf: "center",
         marginTop: 20

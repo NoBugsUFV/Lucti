@@ -3,6 +3,7 @@ import { View, Text, CheckBox, Linking, TextInput, KeyboardAvoidingView } from '
 import { Feather } from '@expo/vector-icons';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import PasswordInputText from 'react-native-hide-show-password-input';
 
 import styles from './styles';
 
@@ -13,6 +14,7 @@ export default function Cadastro(){
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const [confirmPassword, setConfirmPassword] = useState();
+
 
     return(
         <KeyboardAvoidingView style={styles.container} behavior='position' keyboardVerticalOffset={-130}>
@@ -38,20 +40,27 @@ export default function Cadastro(){
 
                 <View style={styles.formRow}>
                     <Text style={styles.label}>Senha</Text>
-                    <TextInput
-                        secureTextEntry={true}
-                        style={styles.labelInput}
-                        placeholder='Digite uma senha'
+                    <PasswordInputText
+                        inputContainerStyle={styles.labelPassword}
+                        fontSize={14}
+                        label={''}
+                        lineWidth={0}
+                        activeLineWidth={0}
+                        placeholder='Digite sua senha'
                         placeholderTextColor='#3B5C2F'
                         onChangeText={text => setPassword(text)}
                     />
                 </View>
 
+
                 <View style={styles.formRow}>
                     <Text style={styles.label}>Confirme a senha</Text>
-                    <TextInput
-                        secureTextEntry={true}                        
-                        style={styles.labelInput}
+                    <PasswordInputText                        
+                        inputContainerStyle={styles.labelPassword}
+                        fontSize={14}
+                        label={''}
+                        lineWidth={0}
+                        activeLineWidth={0}
                         placeholder='Digite a senha novamente'
                         placeholderTextColor='#3B5C2F'
                         onChangeText={text => setConfirmPassword(text)}

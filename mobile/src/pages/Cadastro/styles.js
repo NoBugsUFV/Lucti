@@ -39,6 +39,16 @@ export default StyleSheet.create({
         paddingLeft: 20,
         paddingRight:20
     },
+    labelPassword:{
+        height: 60,
+        borderTopRightRadius:40,
+        borderTopLeftRadius:40,
+        borderRadius:40,
+        backgroundColor: "#CCCCCC",
+        paddingLeft: 20,
+        paddingRight:20,
+        paddingTop: 20,
+    },
     //Index
     termsCheck:{
         flexDirection: "row",
