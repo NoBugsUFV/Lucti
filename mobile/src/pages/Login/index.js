@@ -2,6 +2,7 @@ import React, { useEffect, useState} from 'react';
 import {View, Image, KeyboardAvoidingView, Text, TextInput, Linking} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import PasswordInputText from 'react-native-hide-show-password-input';
 
 import logoImg from '../../assets/logo.png';
 
@@ -51,7 +52,18 @@ export default function Login2(){
                 <TextInput style={styles.input} autoCorrect={false} keyboardType='email-address' placeholder="Digite seu email" placeholderTextColor="#616161" selectionColor="#3B5C2F" onChangeText={text => setEmail(text)}/>
 
                 <Text style={styles.formLabel}>Senha</Text>
-                <TextInput style={styles.input} placeholder="Digite sua senha" autoCorrect={false} secureTextEntry={true} placeholderTextColor="#616161" selectionColor="#3B5C2F" onChangeText={text => setPassword(text)}/>
+                <PasswordInputText
+                    inputContainerStyle={styles.labelPassword}
+                    fontSize={14}
+                    label={''}
+                    lineWidth={0}
+                    activeLineWidth={0} 
+                    placeholder="Digite sua senha"
+                    placeholderTextColor="#616161" 
+                    selectionColor="#3B5C2F"  
+                    autoCorrect={false}
+                    onChangeText={text => setPassword(text)}
+                 />
 
             </View>
 
