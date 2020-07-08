@@ -5,5 +5,4 @@ export default class CompanyController {
     static async readCompanies(){
         return  firebaseDatabase.ref('/users');
     }
-    static 
 }

@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Image, Text, FlatList } from 'react-native';
+import React, {useState} from 'react';
+import { View, Image, Text, FlatList} from 'react-native';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
 import { Searchbar } from 'react-native-paper';
@@ -25,36 +25,32 @@ const categories = [
 ]
 
 export default function Home({navigation}){
-
-    var state = {
-        searchQuery: '',
-        companies: null
-    };
+    const[companies, setCompanies] = useState();
 
     var _onChangeSearch = query => this.setState({ searchQuery: query });
 
     function componentDidMount() {
         companyController.readCompanies().then(ref => {
+            console.log(ref);
             ref.on('value', querySnapShot => {
                 let data = querySnapShot.val() ? querySnapShot.val() : {};
+                
                 let todoItems = {...data};
-                console.log(data)
-                this.setState({
-                  companies: todoItems,
-                });
+
+                console.log("------------------------------------------")
+                // setCompanies(data.empresa)
+                
+                companies:todoItems;
+                //console.log(todoItems[])
+                console.log("------------------------------------------")
+
+                // this.setState({
+                //   companies: todoItems,
+                // });
             });
         });
     }
-    companyController.readCompanies().then(ref => {
-            ref.on('value', querySnapShot => {
-                let data = querySnapShot.val() ? querySnapShot.val() : {};
-                let todoItems = {...data};
-                console.log(data)
-                this.setState({
-                  companies: todoItems,
-                });
-            });
-        });
+    componentDidMount();
     
     return(
         <View style={styles.container}>
@@ -71,7 +67,7 @@ export default function Home({navigation}){
                 <Searchbar style={styles.searchbar} 
                 placeholder="Busque empresas ou serviços" 
                 onChangeText={_onChangeSearch} 
-                value={state.searchQuery} 
+                //value={state.searchQuery} 
                 />
 
             </View>

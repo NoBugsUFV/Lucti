@@ -2,6 +2,7 @@ import {firebaseDatabase, firebaseAuth} from '../services/Firebase/firebase';
 
 
 export default class UserController {
+
     static getDataList = (nodePath, callback, size = 10) => {
 
         let query = firebaseDatabase.ref(nodePath).limitToLast(size);

@@ -11,16 +11,18 @@ import userController from '../../Controllers/userController';
 
 export default function Login2(){
 
+    
     const navigator = useNavigation();
     
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
     async function signInUser(){
+        
         try {
             let user = await userController.loginUser(email,password);
             if(user == undefined){
-                alert("Usuário não cadastrado")
+                alert("Usuário ou senha incorretos")
             }else{
                 if(user.user.emailVerified == true){
                     navigator.navigate("Home");
