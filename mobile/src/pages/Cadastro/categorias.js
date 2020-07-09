@@ -15,10 +15,11 @@ export default function Categorias(props){
     async function cadastrarUsuario() {
         let user = props.route.params.user;
         const validation = await userController.createAuthUser(user);
+        console.log("        validation      "+validation)
         if(validation){
             navigator.navigate('Final');
         }else{
-            alert("Falha no cadastro de informações")
+            alert("Falha no cadastro de informações, favor conferir informações")
         }
     }
 

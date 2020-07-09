@@ -20,22 +20,23 @@ export default class UserController {
     };
 
     static async createAuthUser(user){
+        var cadastrado = false;
         try {
             await firebaseAuth.createUserWithEmailAndPassword(user.login.email, user.login.password)
             .then(
-                response => { 
+                async response => { 
                     alert("Você receberá um email em instantes para validar seu cadastro")
-                    firebaseAuth.currentUser.sendEmailVerification().then(
-                           ()=>{
-                               console.log(user)
+                    await firebaseAuth.currentUser.sendEmailVerification().then(
+                           async function(){
+                               //console.log(user)
                                var key = firebaseDatabase.ref('/users').push().key;
-                               firebaseDatabase.ref('/users').child(key).set(user).then(
+                               await firebaseDatabase.ref('/users').child(key).set(user).then(
                                     ()=>{
-                                        return true;
+                                        cadastrado = true;
                                     }
                                ).catch(err => {
                                     alert("Falha no cadastro da empresa, por favor tente mais tarde")
-                                    return false;
+                                   cadastrado = false;
                                });
                         }
                     )  
@@ -43,7 +44,7 @@ export default class UserController {
             ).catch(err => {
                     alert(err)
             });
-            
+            return cadastrado;
         } catch (error) {
              alert(error)
         }

@@ -1,16 +1,11 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { View, Image, Text, FlatList} from 'react-native';
 import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
 import { Searchbar } from 'react-native-paper';
-
 import logo from '../../assets/logo.png';
-
-//import useController from '../../services/Firebase/useController';
 import companyController from '../../Controllers/companyController';
-
 import styles from './styles';
-
 import foto from '../../assets/foto.jpg'
 
 const categories = [
@@ -25,32 +20,59 @@ const categories = [
 ]
 
 export default function Home({navigation}){
-    const[companies, setCompanies] = useState();
 
-    var _onChangeSearch = query => this.setState({ searchQuery: query });
+    // const [loading, setLoading] = useState(false);
+    const [empresas, setEmpresas] = useState([]);
+    //const[companies, setCompanies] = useState();
+    async function loadEmpresas(){        
 
-    function componentDidMount() {
-        companyController.readCompanies().then(ref => {
-            console.log(ref);
-            ref.on('value', querySnapShot => {
-                let data = querySnapShot.val() ? querySnapShot.val() : {};
-                
-                let todoItems = {...data};
+        // if(loading){
+        //     return;
+        // }
+        //setLoading(true);
 
-                console.log("------------------------------------------")
-                // setCompanies(data.empresa)
-                
-                companies:todoItems;
-                //console.log(todoItems[])
-                console.log("------------------------------------------")
-
-                // this.setState({
-                //   companies: todoItems,
-                // });
-            });
-        });
+        //const response = companyController.getDataList;
+        await companyController.getDataList('users', (dataReceived) =>       
+        setEmpresas({empresa: dataReceived}))
+        
+        console.log(empresas);
+        
+        //setLoading(false);
     }
-    componentDidMount();
+    useEffect(() => {
+        loadEmpresas();
+    }, []);
+
+    // const renderItem = ({ item }) => (
+    //     <View style={styles.companies}>
+    //       <Text>a</Text>
+    //       <Text>a</Text>
+    //     </View>
+    //   );
+
+    const renderItem = ({ item }, contador = 1) => 
+    (
+        <View style={styles.companyCard}>  
+            <Image
+                style={styles.companyLogo}
+                source={{
+                uri:"https://picsum.photos/70"+((contador+=1) +"")
+                }}
+            />          
+            {/* <Image style={styles.companyLogo} source={foto} /> */}
+            <View style={styles.companyInfo}>
+                <Text style={styles.companyName}>{item.empresa.empresa}</Text>
+                <Text style={styles.companyServices} >{item.empresa.endereco.cidade}</Text>
+                <Text style={styles.companyPhone} >{item.empresa.telefone}</Text>
+            </View>    
+        </View>
+    );
+
+      
+    
+
+    
+
     
     return(
         <View style={styles.container}>
@@ -66,7 +88,7 @@ export default function Home({navigation}){
 
                 <Searchbar style={styles.searchbar} 
                 placeholder="Busque empresas ou serviços" 
-                onChangeText={_onChangeSearch} 
+                //onChangeText={_onChangeSearch} 
                 //value={state.searchQuery} 
                 />
 
@@ -102,76 +124,19 @@ export default function Home({navigation}){
                 </ScrollView>
 
                 <Text style={styles.categoriesTitle}>Populares</Text>
-                <ScrollView style={styles.companies} vertical showsVerticalScrollIndicator={false}>
-                    <View style={styles.companyCard}>
-                        
-                        <Image style={styles.companyLogo} source={foto} />
-                        <View style={styles.companyInfo}>
-                            <Text style={styles.companyName}>Nome da Empresa</Text>
-                            <Text style={styles.companyServices} >Serviços ou produtos</Text>
-                            <Text style={styles.companyPhone} >(00) 90000-0000</Text>
-                        </View>
-                        
-                    </View>
-
-                    <View style={styles.companyCard}>
-                        
-                        <Image style={styles.companyLogo} source={foto} />
-                        <View style={styles.companyInfo}>
-                            <Text style={styles.companyName}>Nome da Empresa</Text>
-                            <Text style={styles.companyServices} >Serviços ou produtos</Text>
-                            <Text style={styles.companyPhone} >(00) 90000-0000</Text>
-                        </View>
-                        
-                    </View>
-
-                    <View style={styles.companyCard}>
-                        
-                        <Image style={styles.companyLogo} source={foto} />
-                        <View style={styles.companyInfo}>
-                            <Text style={styles.companyName}>Nome da Empresa</Text>
-                            <Text style={styles.companyServices} >Serviços ou produtos</Text>
-                            <Text style={styles.companyPhone} >(00) 90000-0000</Text>
-                        </View>
-                        
-                    </View>
-
-                    <View style={styles.companyCard}>
-                        
-                        <Image style={styles.companyLogo} source={foto} />
-                        <View style={styles.companyInfo}>
-                            <Text style={styles.companyName}>Nome da Empresa</Text>
-                            <Text style={styles.companyServices} >Serviços ou produtos</Text>
-                            <Text style={styles.companyPhone} >(00) 90000-0000</Text>
-                        </View>
-                        
-                    </View>
-
-                    <View style={styles.companyCard}>
-                        
-                        <Image style={styles.companyLogo} source={foto} />
-                        <View style={styles.companyInfo}>
-                            <Text style={styles.companyName}>Nome da Empresa</Text>
-                            <Text style={styles.companyServices} >Serviços ou produtos</Text>
-                            <Text style={styles.companyPhone} >(00) 90000-0000</Text>
-                        </View>
-                        
-                    </View>
-
-                    <View style={styles.companyCard}>
-                        
-                        <Image style={styles.companyLogo} source={foto} />
-                        <View style={styles.companyInfo}>
-                            <Text style={styles.companyName}>Nome da Empresa</Text>
-                            <Text style={styles.companyServices} >Serviços ou produtos</Text>
-                            <Text style={styles.companyPhone} >(00) 90000-0000</Text>
-                        </View>
-                        
-                    </View>
-
-                </ScrollView>
-
+               <ScrollView>
+                <FlatList
+                // style={{ marginTop: 30 }}
+                    //contentContainerStyle={styles.companies}
+                    data={empresas.empresa}
+                    renderItem={renderItem}
+                    //keyExtractor={item => item.codAlimento}
+                />
+               </ScrollView>
+                    
             </ScrollView>
+
+           
 
         </View>
     );
