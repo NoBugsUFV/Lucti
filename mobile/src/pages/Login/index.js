@@ -2,13 +2,13 @@ import React, { useEffect, useState} from 'react';
 import {View, Image, KeyboardAvoidingView, Text, TextInput, Linking} from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
-import PasswordInputText from 'react-native-hide-show-password-input';
 import logoImg from '../../assets/logo.png';
 
 import styles from './styles';
 
 import userController from '../../controllers/userController';
 import PasswordToggleInput from '../Template/PasswordToggleInput'
+import { AuthContext } from '../../../components/context'
 
 export default function Login(){
 
@@ -17,22 +17,10 @@ export default function Login(){
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
 
-    async function signInUser(){
-        try {
-            let user = await userController.loginUser(email,password);
-            if(user == undefined){
-                alert("Usuário ou senha incorretos")
-            }else{
-                if(user.user.emailVerified == true){
-                    navigator.navigate("Home");
-                }else{
-                    alert("O email ainda não foi verificado")
-                }
-            }
-            
-        }catch{
-            alert("Falha no login. Por favor tente mais tarde")
-        }
+    const { signIn } = React.useContext(AuthContext);
+
+    const loginHandle = (email, password) => {
+        signIn(email, password)
     }
 
     return(
@@ -62,13 +50,13 @@ export default function Login(){
                     autoCorrect={false}
                     onChangeText={text => setPassword(text)}
                  /> */}
-                 <PasswordToggleInput onChange={text => setPassword(text)}/>
+                 <PasswordToggleInput placeholder='Digite sua senha' onChange={text => setPassword(text)}/>
 
             </View>
 
             <View style={styles.submit}>
 
-                <TouchableOpacity style={styles.buttonSubmit} onPress={signInUser}>
+                <TouchableOpacity style={styles.buttonSubmit} onPress={() => loginHandle(email, password)}>
                     <Text style={styles.textSubmit}>Entrar</Text>
                 </TouchableOpacity>
 
