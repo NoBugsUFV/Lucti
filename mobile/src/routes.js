@@ -19,16 +19,15 @@ import Final from './pages/Cadastro/final';
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 
-
- export function DrawerRoutes(){
+export function DrawerRoutes(userToken){
 	return(
 		<Drawer.Navigator
 		screenOptions={{headerShown: false}}
 		drawerStyle={{backgroundColor: 'transparent'}} 
-		drawerContent={props => <DrawerContent {...props}/>} 
-		initialRouteName="Login">
-			<Drawer.Screen name="Login" component={Login} />
+		drawerContent={(props) => <DrawerContent {...props} userToken={userToken}/>} 
+		initialRouteName={!userToken.userToken.user ? 'Login' : 'Home'}>
 			<Drawer.Screen name="Home" component={Home} />
+			<Drawer.Screen name="Login" component={Login} />
 		</Drawer.Navigator>	
 	);
 }
@@ -45,11 +44,13 @@ export function StackRoutes(){
 	);
 }
 
-export default function Routes(){
+export default function Routes(userToken){
 	return(
 		<NavigationContainer>
 			<Stack.Navigator screenOptions={{headerShown: false}}>
-				<Stack.Screen name="Drawer" component={DrawerRoutes}/>
+				<Stack.Screen name="Drawer">
+						{() => <DrawerRoutes userToken={userToken}/>}
+				</Stack.Screen>
 				<Stack.Screen name="Stack" component={StackRoutes}/>
 			</Stack.Navigator>
 		</NavigationContainer>
