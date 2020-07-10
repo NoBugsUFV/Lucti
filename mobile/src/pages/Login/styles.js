@@ -42,7 +42,6 @@ export default StyleSheet.create({
         backgroundColor: "#CCCCCC",
         borderRadius: 40,
         fontSize: 16,
-        color: "#3B5C2F",
         paddingLeft: 20,
         paddingRight:20,
         marginBottom: 10

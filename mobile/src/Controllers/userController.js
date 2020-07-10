@@ -59,7 +59,7 @@ export default class UserController {
                     alert(errorCode + "__"+ errorMessage +"__"+ error.toString())
                 }
             )
-            console.log(user)
+            // console.log(user)
             return user;
 
        } catch (error) {

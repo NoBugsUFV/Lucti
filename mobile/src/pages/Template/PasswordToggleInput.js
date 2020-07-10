@@ -24,7 +24,7 @@ export default class PasswordToggleInput extends React.Component {
     render () {
         return (
             <View style={styles.passwordView}>
-                <TextInput {...this.props} style={styles.labelPassword} placeholder="Digite sua senha" placeholderTextColor="#616161" selectionColor="#3B5C2F" secureTextEntry={this.state.secureTextEntry} />
+                <TextInput {...this.props} style={styles.labelPassword} placeholder="Digite sua senha" placeholderTextColor="#616161" secureTextEntry={this.state.secureTextEntry} onChangeText={this.props.onChange} />
                 <TouchableOpacity onPress={this.iconOnPress} style={{paddingTop: 20}}>
                     <Icon name={this.state.iconName} size={20}/>
                 </TouchableOpacity>

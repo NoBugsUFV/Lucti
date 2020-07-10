@@ -18,7 +18,6 @@ export default function Login(){
     const [password, setPassword] = useState();
 
     async function signInUser(){
-        
         try {
             let user = await userController.loginUser(email,password);
             if(user == undefined){
@@ -48,7 +47,7 @@ export default function Login(){
             <View style={styles.form}>
 
                 <Text style={styles.formLabel}>Email</Text>
-                <TextInput style={styles.input} autoCorrect={false} keyboardType='email-address' placeholder="Digite seu email" placeholderTextColor="#616161" selectionColor="#3B5C2F" onChangeText={text => setEmail(text)}/>
+                <TextInput style={styles.input} autoCorrect={false} keyboardType='email-address' placeholder="Digite seu email" placeholderTextColor="#616161" onChangeText={text => setEmail(text)}/>
 
                 <Text style={styles.formLabel}>Senha</Text>
                 {/* <PasswordInputText
@@ -63,7 +62,7 @@ export default function Login(){
                     autoCorrect={false}
                     onChangeText={text => setPassword(text)}
                  /> */}
-                 <PasswordToggleInput/>
+                 <PasswordToggleInput onChange={text => setPassword(text)}/>
 
             </View>
 
