@@ -6,7 +6,7 @@ import logoImg from '../../assets/logo.png';
 
 import styles from './styles';
 
-import userController from '../../controllers/userController';
+import userController from '../../Controllers/userController';
 import PasswordToggleInput from '../Template/PasswordToggleInput'
 import { AuthContext } from '../../../components/context'
 

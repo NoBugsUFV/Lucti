@@ -6,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import styles from './styles';
 
-import userController from '../../controllers/userController';
+import userController from '../../Controllers/userController';
 
 
 export default function Categorias(props){

@@ -3,7 +3,7 @@ import './src/routes';
 import { YellowBox, View, ActivityIndicator } from 'react-native';
 import Routes from './src/routes';
 import { AuthContext } from './components/context'
-import userController from './src/controllers/userController';
+import userController from './src/Controllers/userController';
 import AsyncStorage from '@react-native-community/async-storage';
 
 export default function App() {

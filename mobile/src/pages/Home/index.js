@@ -4,7 +4,7 @@ import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
 import { Searchbar } from 'react-native-paper';
 import logo from '../../assets/logo.png';
-import companyController from '../../controllers/companyController';
+import companyController from '../../Controllers/companyController';
 import styles from './styles';
 import foto from '../../assets/foto.jpg'
 
