@@ -38,26 +38,27 @@ export default StyleSheet.create({
         marginBottom: 2,
     },
     input:{
-
-        borderTopRightRadius:40,
-        borderTopLeftRadius:40,
-        borderRadius: 40,
-        backgroundColor: "#CCCCCC",
-        paddingLeft: 10,
         height: 60,
+        backgroundColor: "#CCCCCC",
+        borderRadius: 40,
         fontSize: 16,
         color: "#3B5C2F",
+        paddingLeft: 20,
+        paddingRight:20,
+        marginBottom: 10
+    },
+    passwordView: {
+        flexDirection: 'row',
+        backgroundColor: "#CCCCCC",
+        borderRadius:40,
+        height: 60,
+        paddingLeft: 20,
+        paddingRight:20,
         marginBottom: 10
     },
     labelPassword:{
-        height: 60,
-        borderTopRightRadius:40,
-        borderTopLeftRadius:40,
-        borderRadius:40,
-        backgroundColor: "#CCCCCC",
-        paddingLeft: 20,
-        paddingRight:20,
-        paddingTop: 20,
+        flex: 1,
+        fontSize: 16
     },
     submit:{
         alignSelf: "center",

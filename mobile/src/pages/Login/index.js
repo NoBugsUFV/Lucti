@@ -3,16 +3,15 @@ import {View, Image, KeyboardAvoidingView, Text, TextInput, Linking} from 'react
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
 import PasswordInputText from 'react-native-hide-show-password-input';
-
 import logoImg from '../../assets/logo.png';
 
 import styles from './styles';
 
-import userController from '../../Controllers/userController';
+import userController from '../../controllers/userController';
+import PasswordToggleInput from '../Template/PasswordToggleInput'
 
-export default function Login2(){
+export default function Login(){
 
-    
     const navigator = useNavigation();
     
     const [email, setEmail] = useState();
@@ -52,9 +51,9 @@ export default function Login2(){
                 <TextInput style={styles.input} autoCorrect={false} keyboardType='email-address' placeholder="Digite seu email" placeholderTextColor="#616161" selectionColor="#3B5C2F" onChangeText={text => setEmail(text)}/>
 
                 <Text style={styles.formLabel}>Senha</Text>
-                <PasswordInputText
+                {/* <PasswordInputText
                     inputContainerStyle={styles.labelPassword}
-                    fontSize={14}
+                    fontSize={16}
                     label={''}
                     lineWidth={0}
                     activeLineWidth={0} 
@@ -63,7 +62,8 @@ export default function Login2(){
                     selectionColor="#3B5C2F"  
                     autoCorrect={false}
                     onChangeText={text => setPassword(text)}
-                 />
+                 /> */}
+                 <PasswordToggleInput/>
 
             </View>
 
