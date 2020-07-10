@@ -16,8 +16,6 @@ import Endereco from './pages/Cadastro/endereco';
 import Categorias from './pages/Cadastro/categorias';
 import Final from './pages/Cadastro/final';
 
-
-
 const Drawer = createDrawerNavigator();
 const Stack = createStackNavigator();
 

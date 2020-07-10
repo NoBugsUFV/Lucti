@@ -4,7 +4,7 @@ import { TouchableOpacity, ScrollView } from 'react-native-gesture-handler';
 import { Feather } from '@expo/vector-icons';
 import { Searchbar } from 'react-native-paper';
 import logo from '../../assets/logo.png';
-import companyController from '../../Controllers/companyController';
+import companyController from '../../controllers/companyController';
 import styles from './styles';
 import foto from '../../assets/foto.jpg'
 
@@ -35,7 +35,7 @@ export default function Home({navigation}){
         await companyController.getDataList('users', (dataReceived) =>       
         setEmpresas({empresa: dataReceived}))
         
-        console.log(empresas);
+        // console.log(empresas);
         
         //setLoading(false);
     }
@@ -50,14 +50,21 @@ export default function Home({navigation}){
     //     </View>
     //   );
 
-    const renderItem = ({ item }, contador = 1) => 
+    const renderCategories = ({ item }, contador = 1) =>
+    (
+        <View style={styles.category}>
+            <Image style={styles.categoryImage} source={{uri:`https://picsum.photos/70${contador+=1}`}}/>
+            <Text style={styles.categoryName}>{item.title}</Text>
+        </View>
+    );
+
+    const renderItem = ({ item }, contador = 1) =>
     (
         <View style={styles.companyCard}>  
             <Image
                 style={styles.companyLogo}
                 source={{
-                uri:"https://picsum.photos/70"+((contador+=1) +"")
-                }}
+                uri:`https://picsum.photos/70${contador+=1}`}}
             />          
             {/* <Image style={styles.companyLogo} source={foto} /> */}
             <View style={styles.companyInfo}>
@@ -68,12 +75,6 @@ export default function Home({navigation}){
         </View>
     );
 
-      
-    
-
-    
-
-    
     return(
         <View style={styles.container}>
             <View style={styles.header}>
@@ -94,7 +95,7 @@ export default function Home({navigation}){
 
             </View>
 
-            <ScrollView style={styles.content} vertical showsVerticalScrollIndicator={false}>
+            {/* <ScrollView style={styles.content} vertical showsVerticalScrollIndicator={false}>
                 <Text style={styles.categoriesTitle}>Categorias</Text>
                 <ScrollView style={styles.categories} horizontal showsHorizontalScrollIndicator={false}>
                     <View style={styles.category}>
@@ -123,18 +124,32 @@ export default function Home({navigation}){
                     </View>
                 </ScrollView>
 
-                <Text style={styles.categoriesTitle}>Populares</Text>
-               <ScrollView>
-                <FlatList
-                // style={{ marginTop: 30 }}
-                    //contentContainerStyle={styles.companies}
-                    data={empresas.empresa}
-                    renderItem={renderItem}
-                    //keyExtractor={item => item.codAlimento}
-                />
-               </ScrollView>
-                    
-            </ScrollView>
+                
+               
+            </ScrollView> */}
+            <FlatList
+                ListHeaderComponent={
+                    <FlatList
+                        style={{ margin: 5 }}
+                        horizontal={true}
+                        data={categories}
+                        renderItem={renderCategories}
+                        keyExtractor={item => item.id.toString()}
+                    />
+                }
+                ListFooterComponent={
+                    <FlatList
+                        style={{ marginTop: 5 }}
+                        //contentContainerStyle={styles.companies}
+                        // ListHeaderComponent={
+                        //     <Text style={styles.categoriesTitle}>Populares</Text>
+                        // }
+                        data={empresas.empresa}
+                        renderItem={renderItem}
+                        //keyExtractor={item => item.codAlimento}
+                    />  
+                }
+            />
 
            
 
