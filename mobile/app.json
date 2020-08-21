@@ -1,11 +1,9 @@
 {
   "expo": {
-    "name": "mobile",
+    "name": "Lucti",
     "slug": "mobile",
     "platforms": [
-      "ios",
-      "android",
-      "web"
+      "android"
     ],
     "version": "1.0.0",
     "orientation": "portrait",
@@ -23,6 +21,9 @@
     ],
     "ios": {
       "supportsTablet": true
+    },
+    "android":{
+      "package":"com.nobugs.lucti"
     }
   }
 }
